@@ -26,7 +26,7 @@ const AccountInf = () => (
         <AccountImg imgSrc={ProfilImg} />
         <PersonalInf>
             <Name>Piotrek</Name>
-            <Range>Elektronika i telekomunikacja</Range>
+            <Range>Informatyka</Range>
         </PersonalInf>
     </Account>
 );

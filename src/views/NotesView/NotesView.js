@@ -11,7 +11,6 @@ const Wrapper = styled.div`
     grid-template-rows:  60px auto;
     height: calc(100vh - 60px);
     padding-bottom: 10px; 
-    overflow-y: scroll;
 `
 
 const CategoryFilter = styled.div`
@@ -23,10 +22,12 @@ const CategoryFilter = styled.div`
 
 const NotesGrid = styled.div`
     width: 100%;
-    display: ${props => props.numberOf && "grid"};
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-column-gap: 30px;
-    grid-row-gap: 30px;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: flex-start;
+    overflow-y: scroll;
 
     > p { 
         text-align: center;

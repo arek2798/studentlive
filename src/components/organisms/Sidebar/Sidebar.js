@@ -23,7 +23,7 @@ const Sidebar = () => (
         <Logo src={LogoImg} alt="Logo StudentLive" />
         <Avatar />
         <Nav />
-        <Logout />
+        {/* <Logout /> */}
     </Wrapper>
 );
 

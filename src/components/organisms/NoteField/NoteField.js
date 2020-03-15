@@ -9,7 +9,8 @@ import Modal from '../../molecules/Modal/Modal';
 
 const Field = styled.div`
     height: 220px;
-    width: 100%;
+    width: 350px;
+    margin: 10px;
     background-color: #FFFFFF;
     border-radius: 10px;
     box-shadow: 0 8px 10px -5px rgba(0,0,0,0.4);

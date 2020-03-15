@@ -36,6 +36,10 @@ const Content = styled.div`
     padding-bottom: 20px;
 `
 
+const HtmlEdit = styled.div`
+
+`
+
 const ButtonsWrapper = styled.div`
     display: grid;
     grid-template-columns: 130px auto;
@@ -91,6 +95,7 @@ class NoteDetailsView extends React.Component {
                 </Header>
                 <Content>
                     {!this.state.edit ? (note.content ? note.content : <p>Brak treści</p>) : <Input as="textarea" textarea resize="none" placeholder="treść" id="content" value={content} onChange={this.handleChangeText} />}
+                    {/* {!this.state.edit ? (note.content ? note.content : <p>Brak treści</p>) : <HtmlEdit contenteditable="true" id="content" onChange={this.handleChangeText}>{content}</HtmlEdit>} */}
                     <ButtonsWrapper>
                         {!this.state.edit ? <Button onClick={() => this.handleEdit(note)} large>edytuj</Button> : <Button onClick={this.handleSave} large>zapisz</Button>}
                         {!this.state.edit && <Link to="/notes"><Button large>zamknij</Button></Link>}
