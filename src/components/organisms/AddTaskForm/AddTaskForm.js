@@ -28,6 +28,7 @@ const InputWrapper = styled.div`
 
 class AddTaskForm extends React.Component {
     state = {
+        done: false,
         content: '',
         date: '',
         time: '',

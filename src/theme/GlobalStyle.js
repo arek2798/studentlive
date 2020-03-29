@@ -34,14 +34,14 @@ const GlobalStyle = createGlobalStyle`
         background-color: #eeeeee;
         width: 100vw;
         height: 100vh;
-        overflow: hidden;
+        overflow-x: hidden;
         display: flex;
         flex-wrap: nowrap;
     }
 
     main {
         width: 100%;
-        padding: 30px;
+        padding: 30px 30px 30px 340px;
     }
 `;
 

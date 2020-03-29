@@ -26,7 +26,7 @@ const ListItem = styled.div`
 
 const Date = styled.p`
     color: #EB5757;
-    width: 210px;
+    width: 240px;
     min-height: 30px;
     border-right: 3px solid #EEEEEE;
 `
@@ -43,8 +43,8 @@ const NextTasksField = ({ tasks }) => {
         <Field>
             <Heading>zadania do wykonania</Heading>
             {upcommingTasks.map(task => (
-                < ListItem >
-                    <Date>{task.date}</Date>
+                <ListItem key={task._id}>
+                    <Date>{task.date} {task.time}</Date>
                     <Title>{task.content}</Title>
                 </ListItem>
             ))}

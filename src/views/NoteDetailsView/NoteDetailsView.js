@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { editNote } from '../../actions';
+import { fetchOneNote, editNote } from '../../actions';
 import { Link, Redirect } from 'react-router-dom';
 import styled from 'styled-components';
 import Button from '../../components/atoms/Button/Button';
@@ -36,10 +36,6 @@ const Content = styled.div`
     padding-bottom: 20px;
 `
 
-const HtmlEdit = styled.div`
-
-`
-
 const ButtonsWrapper = styled.div`
     display: grid;
     grid-template-columns: 130px auto;
@@ -48,13 +44,16 @@ const ButtonsWrapper = styled.div`
 class NoteDetailsView extends React.Component {
     state = {
         note: {
-            id: '',
             title: '',
             category: '',
             content: '',
             created: ''
         },
         edit: false
+    }
+
+    componentDidMount() {
+        // this.props.fetchOneNote(this.props.match.params.id);
     }
 
     handleEdit = (note = '') => {
@@ -74,13 +73,14 @@ class NoteDetailsView extends React.Component {
 
     handleSave = () => {
         this.props.editNote(this.state.note);
+        console.log(this.state.note);
+
         this.handleEdit();
     }
 
     render() {
         const { notes, match } = this.props;
-        const note = notes.filter(note => note.id.toString() === match.params.id)[0];
-        console.log(this.state.note);
+        const note = notes.filter(note => note._id.toString() === match.params.id)[0];
         const { title, category, content } = this.state.note;
 
         if (note === undefined) {
@@ -95,7 +95,6 @@ class NoteDetailsView extends React.Component {
                 </Header>
                 <Content>
                     {!this.state.edit ? (note.content ? note.content : <p>Brak treści</p>) : <Input as="textarea" textarea resize="none" placeholder="treść" id="content" value={content} onChange={this.handleChangeText} />}
-                    {/* {!this.state.edit ? (note.content ? note.content : <p>Brak treści</p>) : <HtmlEdit contenteditable="true" id="content" onChange={this.handleChangeText}>{content}</HtmlEdit>} */}
                     <ButtonsWrapper>
                         {!this.state.edit ? <Button onClick={() => this.handleEdit(note)} large>edytuj</Button> : <Button onClick={this.handleSave} large>zapisz</Button>}
                         {!this.state.edit && <Link to="/notes"><Button large>zamknij</Button></Link>}
@@ -108,6 +107,7 @@ class NoteDetailsView extends React.Component {
 
 const mapStateToProps = ({ notes }) => ({ notes });
 const mapDispatchToProps = dispatch => ({
+    fetchOneNote: (id) => dispatch(fetchOneNote(id)),
     editNote: (note) => dispatch(editNote(note))
 })
 

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import FilterButton from '../../components/atoms/FilterButton/FilterButton';
 import { connect } from 'react-redux';
-import { doTask } from '../../actions';
+import { getTasks, doTask } from '../../actions';
 import Task from '../../components/molecules/Task/Task';
 import IconButton from '../../components/atoms/IconButton/IconButton';
 import AddNewTaskSidebar from '../../components/organisms/AddNewTask/AddNewTask';
@@ -37,6 +37,10 @@ class TodoView extends React.Component {
         isSidebarActive: false
     }
 
+    componentDidMount() {
+        this.props.getTasks();
+    }
+
     changeFilter = filter => {
         this.setState({
             activeFilter: filter
@@ -47,6 +51,12 @@ class TodoView extends React.Component {
         this.setState(prevState => ({
             isSidebarActive: !prevState.isSidebarActive
         }))
+    }
+
+    handleDoTask = (id, task) => {
+        const doneTask = task;
+        doneTask.done = !doneTask.done;
+        this.props.doTask(id, doneTask);
     }
 
     render() {
@@ -69,7 +79,7 @@ class TodoView extends React.Component {
                 </CategoryFilter>
                 <TasksWrapper>
                     {tasksFilter.length ?
-                        (tasksFilter.map(task => <Task key={task.id} id={task.id} checked={task.done} date={task.date} time={task.time} important={task.important} onChange={() => this.props.doTask(task.id)}>{task.content}</Task>))
+                        (tasksFilter.map(task => <Task key={task._id} id={task._id} checked={task.done} date={task.date} time={task.time} important={task.important} onChange={() => this.handleDoTask(task._id, task)}>{task.content}</Task>))
                         : <Info>Brak zadań</Info>
                     }
                 </TasksWrapper>
@@ -85,7 +95,8 @@ class TodoView extends React.Component {
 const mapStateToProps = ({ tasks }) => ({ tasks });
 
 const mapDispatchToProps = dispatch => ({
-    doTask: (id) => dispatch(doTask(id))
+    getTasks: () => dispatch(getTasks()),
+    doTask: (id, task) => dispatch(doTask(id, task))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(TodoView);

@@ -40,40 +40,28 @@ const NextEventsField = ({ events }) => {
         switch (number) {
             case 0:
                 return "Styczeń"
-                break;
             case 1:
                 return "Luty"
-                break;
             case 2:
                 return "Marzec"
-                break;
             case 3:
                 return "Kwiecień"
-                break;
             case 4:
                 return "Maj"
-                break;
             case 5:
                 return "Czerwiec"
-                break;
             case 6:
                 return "Lipiec"
-                break;
             case 7:
                 return "Sierpień"
-                break;
             case 8:
                 return "Wrzesień"
-                break;
             case 9:
                 return "Październik"
-                break;
             case 10:
                 return "Listopad"
-                break;
             case 11:
                 return "Grudzień"
-                break;
             default:
                 break;
         }
@@ -85,7 +73,7 @@ const NextEventsField = ({ events }) => {
         <Field>
             <Heading>najblizsze wydarzenia</Heading>
             {upcommingEvents.map(event => (
-                < ListItem >
+                <ListItem key={event.id}>
                     <Date>{event.start.getDate()} {changeToMonth(event.start.getMonth())} {event.start.getFullYear()}</Date>
                     <Title>{event.title}</Title>
                 </ListItem>

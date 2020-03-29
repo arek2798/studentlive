@@ -52,11 +52,9 @@ class Form extends React.Component {
     state = {
         subject: {
             name: "",
-            type: {
-                lecture: false,
-                exercise: false,
-                laboratory: false
-            },
+            lecture: false,
+            exercise: false,
+            laboratory: false,
             ects: '',
             credit: false,
             grade: '',
@@ -83,7 +81,7 @@ class Form extends React.Component {
 
     handleType = (e) => {
         let subject = this.state.subject;
-        subject.type[e.target.value] = e.target.checked
+        subject[e.target.value] = e.target.checked
         this.setState({
             subject
         })
@@ -92,7 +90,7 @@ class Form extends React.Component {
     handleCredit = (e) => {
         let subject = this.state.subject;
         subject.credit = e.target.value === "true" ? true : false;
-        subject.grade = subject.credit ? subject.grade : "";
+        subject.grade = subject.credit ? subject.grade : null;
         this.setState({
             subject
         })
@@ -100,9 +98,9 @@ class Form extends React.Component {
 
     addSubject = (e) => {
         e.preventDefault();
-        const { name, type, ects, credit, grade } = this.state.subject;
+        const { name, lecture, exercise, laboratory, ects, credit, grade } = this.state.subject;
 
-        if (!name || (!type.lecture && !type.exercise && !type.laboratory) || !ects) {
+        if (!name || (!lecture && !exercise && !laboratory) || !ects) {
             this.setState({
                 error: true,
                 errorContent: "potrzebne wszystkie informacje"
@@ -120,7 +118,7 @@ class Form extends React.Component {
     }
 
     render() {
-        const { name, type, ects, credit, grade } = this.state.subject;
+        const { name, lecture, exercise, laboratory, ects, credit, grade } = this.state.subject;
         const { edit } = this.props;
         return (
             <FormContent autoComplete="off" onSubmit={(e) => this.addSubject(e)}>
@@ -129,9 +127,9 @@ class Form extends React.Component {
                     <Input small id="name" value={name} onChange={this.handleText} />
                     <Label>rodzaj zajęć:</Label>
                     <FlexTemplate>
-                        <Checkbox checked={type.lecture} value="lecture" onChange={this.handleType}>wykłady</Checkbox>
-                        <Checkbox checked={type.exercise} value="exercise" onChange={this.handleType}>ćwiczenia</Checkbox>
-                        <Checkbox checked={type.laboratory} value="laboratory" onChange={this.handleType}>laboratoria</Checkbox>
+                        <Checkbox checked={lecture} value="lecture" onChange={this.handleType}>wykłady</Checkbox>
+                        <Checkbox checked={exercise} value="exercise" onChange={this.handleType}>ćwiczenia</Checkbox>
+                        <Checkbox checked={laboratory} value="laboratory" onChange={this.handleType}>laboratoria</Checkbox>
                     </FlexTemplate>
                     <FlexTemplate>
                         <Label htmlFor="ects">liczba punktów ECTS:</Label>

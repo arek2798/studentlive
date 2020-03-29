@@ -5,6 +5,7 @@ import FilterButton from '../../components/atoms/FilterButton/FilterButton';
 import NoteFiled from '../../components/organisms/NoteField/NoteField';
 import IconButton from '../../components/atoms/IconButton/IconButton';
 import AddNewNoteSidebar from '../../components/organisms/AddNewNote/AddNewNote';
+import { fetchNotes } from '../../actions';
 
 const Wrapper = styled.div`
     display: grid;
@@ -29,6 +30,26 @@ const NotesGrid = styled.div`
     align-content: flex-start;
     overflow-y: scroll;
 
+    &::-webkit-scrollbar-track
+    {
+        box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        border-radius: 10px;
+        background-color: #F5F5F5;
+    }
+
+    &::-webkit-scrollbar
+    {
+        width: 12px;
+        background-color: #F5F5F5;
+    }
+
+    &::-webkit-scrollbar-thumb
+    {
+        border-radius: 10px;
+        box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+        background-color: #EB5757;
+    }
+
     > p { 
         text-align: center;
         font-size: 22px;
@@ -45,13 +66,17 @@ const IconFixed = styled.div`
 
 class NotesView extends React.Component {
     state = {
-        activeCategory: 0,
+        activeCategory: 'wszystkie',
         isSidebarActive: false
     }
 
-    changeActive = id => (
+    componentDidMount() {
+        this.props.fetchNotes();
+    }
+
+    changeActive = name => (
         this.setState({
-            activeCategory: id
+            activeCategory: name
         })
     )
 
@@ -62,20 +87,19 @@ class NotesView extends React.Component {
     }
 
     render() {
-        const category = this.props.notesCategories[this.state.activeCategory].name;
-        let filterNotes;
-        if (category !== "wszystkie") filterNotes = this.props.notes.filter(note => note.category === category);
-        else filterNotes = this.props.notes;
+        const allCategory = ['wszystkie', ...this.props.notes.map(note => note.category.toLowerCase())];
+        let category = [...new Set(allCategory)];
+        const filterNotes = this.props.notes.filter(note => note.category.toLowerCase() === this.state.activeCategory || this.state.activeCategory === 'wszystkie');
 
         return (
             <>
                 <Wrapper>
-                    <CategoryFilter numberOf={this.props.notesCategories.length}>
-                        {this.props.notesCategories.map((category) => <FilterButton key={category.id} click={() => this.changeActive(category.id)} active={category.id === this.state.activeCategory ? true : false}>{category.name}</FilterButton>)}
+                    <CategoryFilter numberOf={category.length + 1}>
+                        {category.map((category) => <FilterButton key={category} click={() => this.changeActive(category)} active={category === this.state.activeCategory ? true : false}>{category}</FilterButton>)}
                     </CategoryFilter>
                     <NotesGrid numberOf={filterNotes.length}>
                         {filterNotes.length ?
-                            filterNotes.map(note => <NoteFiled key={note.id} note={note} />)
+                            filterNotes.map(note => <NoteFiled key={note._id} note={note} />)
                             :
                             <p>Brak notatek</p>}
                     </NotesGrid>
@@ -90,6 +114,9 @@ class NotesView extends React.Component {
 
 }
 
-const mapStateToProps = ({ notesCategories, notes }) => ({ notesCategories, notes })
+const mapStateToProps = ({ notes }) => ({ notes })
+const mapDispatchToProps = dispatch => ({
+    fetchNotes: () => dispatch(fetchNotes())
+})
 
-export default connect(mapStateToProps)(NotesView);
+export default connect(mapStateToProps, mapDispatchToProps)(NotesView);

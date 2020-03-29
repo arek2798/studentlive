@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { removeSubject } from '../../actions';
+import { fetchSubjects, removeSubject } from '../../actions';
 import styled from 'styled-components';
 import Button from '../../components/atoms/Button/Button';
 import Modal from '../../components/molecules/Modal/Modal';
@@ -10,22 +10,18 @@ import Table from '../../components/atoms/Table/Table';
 
 const Wrapper = styled.div`
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-start;
 `
-
 const Correct = styled.span`
     color: #27AE60;
 `
-
 const Wrong = styled.span`
     color: #EB5757;
 `
-
 const TextRight = styled.div`
     padding-top: 20px;
     text-align: right;
 `
-
 const TextCenter = styled.div`
     padding-top: 20px;
     text-align: center;
@@ -36,6 +32,11 @@ class SubjectsView extends React.Component {
         activeSub: 0,
         modalOpen: false,
         editModalOpen: false
+    }
+
+    componentDidMount() {
+        const { fetchSubjects } = this.props;
+        fetchSubjects();
     }
 
     openModal = (edit) => {
@@ -56,9 +57,14 @@ class SubjectsView extends React.Component {
         this.openModal(true)
     }
 
+    alphabeticalSorting = (a, b) => {
+        if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
+        else return -1;
+    }
+
     render() {
         const { subjects, removeSubject } = this.props;
-        const subject = subjects.filter(subject => subject.id === this.state.activeSub)[0];
+        const subject = subjects.filter(subject => subject._id === this.state.activeSub)[0];
 
         return (
             <Wrapper>
@@ -76,15 +82,15 @@ class SubjectsView extends React.Component {
                             </tr>
                         </thead>
                         <tbody>
-                            {subjects.map((subject) => (
-                                <tr key={subject.name}>
+                            {subjects.sort((a, b) => this.alphabeticalSorting(a, b)).map((subject) => (
+                                <tr key={subject._id}>
                                     <td>{subject.name}</td>
-                                    <td>{subject.type.lecture && "W "}{subject.type.exercise && "C "}{subject.type.laboratory && "L"}</td>
+                                    <td>{subject.lecture && "W "}{subject.exercise && "C "}{subject.laboratory && "L"}</td>
                                     <td>{subject.ects}</td>
                                     <td>{subject.credit ? <Correct>TAK</Correct> : <Wrong>NIE</Wrong>}</td>
-                                    <td>{subject.grade === '' ? <span>-</span> : <span>{subject.grade}</span>}</td>
-                                    <td><Button small onClick={() => this.changeData(subject.id)}>zmien dane</Button></td>
-                                    <td><Button small onClick={() => removeSubject(subject.id)}>usuń</Button></td>
+                                    <td>{(subject.grade === null) ? <span>-</span> : <span>{subject.grade}</span>}</td>
+                                    <td><Button small onClick={() => this.changeData(subject._id)}>zmien dane</Button></td>
+                                    <td><Button small onClick={() => removeSubject(subject._id)}>usuń</Button></td>
                                 </tr>
                             ))}
                         </tbody>
@@ -109,10 +115,14 @@ class SubjectsView extends React.Component {
     };
 };
 
-const mapStateToProps = ({ subjects }) => ({ subjects });
+const mapStateToProps = state => {
+    const { subjects } = state;
+    return { subjects };
+}
 
 const mapDispatchToProps = dispatch => ({
-    removeSubject: (id) => dispatch(removeSubject(id))
+    removeSubject: (id) => dispatch(removeSubject(id)),
+    fetchSubjects: () => dispatch(fetchSubjects())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SubjectsView);

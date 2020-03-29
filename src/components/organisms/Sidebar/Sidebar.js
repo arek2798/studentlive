@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import LogoImg from '../../../assets/StudentLive.svg';
 import Avatar from '../../molecules/Avatar/Avatar';
 import Nav from '../../molecules/Nav/Nav';
-import Logout from '../../atoms/Logout/Logout';
+// import Logout from '../../atoms/Logout/Logout';
 
 const Wrapper = styled.section`
     background: #212328;
@@ -11,7 +11,7 @@ const Wrapper = styled.section`
     width: 310px;
     height: 100vh;
     text-align: center;
-    position: relative;
+    position: fixed;
     flex-shrink: 0;
 `
 const Logo = styled.img`

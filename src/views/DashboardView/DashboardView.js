@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
+import { getTasks } from '../../actions';
 import NextEventsFiled from '../../components/molecules/NextEventsField/NextEventsField';
 import NextTasksField from '../../components/molecules/NextTasksField/NextTasksField';
 
@@ -9,14 +11,27 @@ const Wrapper = styled.div`
     align-items: flex-start;
 `
 
-const DashboardView = () => {
+class DashboardView extends React.Component {
+    state = {
 
-    return (
-        <Wrapper>
-            <NextEventsFiled />
-            <NextTasksField />
-        </Wrapper >
-    );
+    }
+
+    componentDidMount() {
+        this.props.getTasks();
+    }
+
+    render() {
+        return (
+            <Wrapper>
+                <NextEventsFiled />
+                <NextTasksField />
+            </Wrapper >
+        );
+    }
 }
 
-export default DashboardView;
+const mapDispatchToProps = dispatch => ({
+    getTasks: () => dispatch(getTasks())
+})
+
+export default connect(null, mapDispatchToProps)(DashboardView);

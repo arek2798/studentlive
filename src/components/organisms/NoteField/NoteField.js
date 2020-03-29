@@ -68,7 +68,7 @@ const Created = styled.span`
 class NoteFiled extends React.Component {
     state = {
         modalOpen: false,
-        id: 0,
+        _id: 0,
     }
 
     openModal = () => {
@@ -79,21 +79,21 @@ class NoteFiled extends React.Component {
 
     handleAgree = (agree) => {
         if (agree) {
-            this.props.removeNote(this.state.id);
+            this.props.removeNote(this.state._id);
         }
         this.openModal();
     }
 
-    handleRemove = (id) => {
+    handleRemove = (_id) => {
         this.openModal();
         this.setState({
-            id
+            _id
         })
     }
 
     render() {
         const { note } = this.props
-        const { id, title, category, content, created } = note;
+        const { _id, title, category, content, created } = note;
         return (
             <Field>
                 <Header>
@@ -101,9 +101,9 @@ class NoteFiled extends React.Component {
                     <Category>{category}</Category>
                 </Header>
                 <Body>
-                    <Content as={Link} to={`/notes/${id}`}>{content}</Content>
+                    <Content as={Link} to={`/notes/${_id}`}>{content}</Content>
                     <ButtonsWrapper>
-                        <Button onClick={() => this.handleRemove(id)}>usuń</Button>
+                        <Button onClick={() => this.handleRemove(_id)}>usuń</Button>
                         <Created>{created}</Created>
                     </ButtonsWrapper>
                 </Body>

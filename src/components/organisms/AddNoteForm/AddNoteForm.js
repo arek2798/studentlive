@@ -19,8 +19,7 @@ class AddNoteForm extends React.Component {
     state = {
         title: '',
         category: '',
-        content: '',
-        created: ''
+        content: ''
     }
 
     handleText = (e) => {
@@ -31,14 +30,13 @@ class AddNoteForm extends React.Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        const date = new Date();
-        const created = `${date.getFullYear()}-${('0' + (date.getMonth() + 1)).slice(-2)}-${('0' + date.getDate()).slice(-2)} ${('0' + date.getHours()).slice(-2)}:${('0' + date.getMinutes()).slice(-2)}`;
-        this.setState({
-            created
-        },
-            () => this.props.addNote(this.state)
-        )
+        this.props.addNote(this.state)
         this.props.toggleSidebar();
+        this.setState({
+            title: '',
+            category: '',
+            content: ''
+        })
     }
 
     render() {
