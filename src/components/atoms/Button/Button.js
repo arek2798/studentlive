@@ -24,6 +24,16 @@ const Button = styled.button`
             font-size: 14px;
         `
     }
+
+    ${({ login }) =>
+        login && css`
+            width: 200px;
+            height: 40px;
+            border-radius: 20px;
+            font-size: 18px;
+            font-weight: 400;
+        `
+    }
 `
 
 export default Button;

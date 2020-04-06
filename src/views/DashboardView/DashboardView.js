@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import UserPageTemplate from '../../templates/UserPageTemplate';
 import { connect } from 'react-redux';
 import { getTasks } from '../../actions';
 import NextEventsFiled from '../../components/molecules/NextEventsField/NextEventsField';
@@ -22,10 +23,12 @@ class DashboardView extends React.Component {
 
     render() {
         return (
-            <Wrapper>
-                <NextEventsFiled />
-                <NextTasksField />
-            </Wrapper >
+            <UserPageTemplate>
+                <Wrapper>
+                    <NextEventsFiled />
+                    <NextTasksField />
+                </Wrapper >
+            </UserPageTemplate >
         );
     }
 }

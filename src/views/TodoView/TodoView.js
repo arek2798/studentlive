@@ -1,4 +1,5 @@
 import React from 'react';
+import UserPageTemplate from '../../templates/UserPageTemplate';
 import styled from 'styled-components';
 import FilterButton from '../../components/atoms/FilterButton/FilterButton';
 import { connect } from 'react-redux';
@@ -70,7 +71,7 @@ class TodoView extends React.Component {
         if (activeFilter === "todo") tasksFilter.sort((a, b) => a.important < b.important ? 1 : -1);
 
         return (
-            <>
+            <UserPageTemplate>
                 <CategoryFilter>
                     <FilterButton active={activeFilter === "todo"} click={() => this.changeFilter("todo")}>do zrobienia</FilterButton>
                     <FilterButton active={activeFilter === "important"} click={() => this.changeFilter("important")}>ważne</FilterButton>
@@ -87,7 +88,7 @@ class TodoView extends React.Component {
                     <IconButton onClick={this.handleSidebarToggle}>+</IconButton>
                 </IconFixed>
                 <AddNewTaskSidebar isSidebarActive={this.state.isSidebarActive} toggleSidebar={this.handleSidebarToggle} />
-            </>
+            </UserPageTemplate>
         );
     }
 }

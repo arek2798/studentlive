@@ -1,4 +1,5 @@
 import React from 'react';
+import UserPageTemplate from '../../templates/UserPageTemplate';
 import { connect } from 'react-redux';
 import { fetchSubjects, removeSubject } from '../../actions';
 import styled from 'styled-components';
@@ -67,50 +68,52 @@ class SubjectsView extends React.Component {
         const subject = subjects.filter(subject => subject._id === this.state.activeSub)[0];
 
         return (
-            <Wrapper>
-                <DataField >
-                    <Table>
-                        <thead>
-                            <tr>
-                                <th>nazwa przedmiotu</th>
-                                <th>rodzaj zajęć</th>
-                                <th>punkty ECTS</th>
-                                <th>zaliczenie</th>
-                                <th>ocena</th>
-                                <th></th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {subjects.sort((a, b) => this.alphabeticalSorting(a, b)).map((subject) => (
-                                <tr key={subject._id}>
-                                    <td>{subject.name}</td>
-                                    <td>{subject.lecture && "W "}{subject.exercise && "C "}{subject.laboratory && "L"}</td>
-                                    <td>{subject.ects}</td>
-                                    <td>{subject.credit ? <Correct>TAK</Correct> : <Wrong>NIE</Wrong>}</td>
-                                    <td>{(subject.grade === null) ? <span>-</span> : <span>{subject.grade}</span>}</td>
-                                    <td><Button small onClick={() => this.changeData(subject._id)}>zmien dane</Button></td>
-                                    <td><Button small onClick={() => removeSubject(subject._id)}>usuń</Button></td>
+            <UserPageTemplate>
+                <Wrapper>
+                    <DataField >
+                        <Table>
+                            <thead>
+                                <tr>
+                                    <th>nazwa przedmiotu</th>
+                                    <th>rodzaj zajęć</th>
+                                    <th>punkty ECTS</th>
+                                    <th>zaliczenie</th>
+                                    <th>ocena</th>
+                                    <th></th>
+                                    <th></th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </Table>
-                    {!subjects.length && <><TextCenter>dodaj przedmiot do listy zajęć</TextCenter></>}
-                    <TextRight>
-                        <Button onClick={() => this.openModal(false)}>dodaj nowy</Button>
-                    </TextRight>
-                </DataField>
-                {this.state.modalOpen &&
-                    <Modal>
-                        <Button onClick={() => this.openModal(false)} close>X</Button>
-                        <Form openModal={() => this.openModal(false)} />
-                    </Modal>}
-                {this.state.editModalOpen &&
-                    <Modal>
-                        <Button onClick={() => this.openModal(true)} close>X</Button>
-                        <Form openModal={() => this.openModal(true)} subject={subject} edit />
-                    </Modal>}
-            </Wrapper>
+                            </thead>
+                            <tbody>
+                                {subjects.sort((a, b) => this.alphabeticalSorting(a, b)).map((subject) => (
+                                    <tr key={subject._id}>
+                                        <td>{subject.name}</td>
+                                        <td>{subject.lecture && "W "}{subject.exercise && "C "}{subject.laboratory && "L"}</td>
+                                        <td>{subject.ects}</td>
+                                        <td>{subject.credit ? <Correct>TAK</Correct> : <Wrong>NIE</Wrong>}</td>
+                                        <td>{(subject.grade === null) ? <span>-</span> : <span>{subject.grade}</span>}</td>
+                                        <td><Button small onClick={() => this.changeData(subject._id)}>zmien dane</Button></td>
+                                        <td><Button small onClick={() => removeSubject(subject._id)}>usuń</Button></td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </Table>
+                        {!subjects.length && <><TextCenter>dodaj przedmiot do listy zajęć</TextCenter></>}
+                        <TextRight>
+                            <Button onClick={() => this.openModal(false)}>dodaj nowy</Button>
+                        </TextRight>
+                    </DataField>
+                    {this.state.modalOpen &&
+                        <Modal>
+                            <Button onClick={() => this.openModal(false)} close>X</Button>
+                            <Form openModal={() => this.openModal(false)} />
+                        </Modal>}
+                    {this.state.editModalOpen &&
+                        <Modal>
+                            <Button onClick={() => this.openModal(true)} close>X</Button>
+                            <Form openModal={() => this.openModal(true)} subject={subject} edit />
+                        </Modal>}
+                </Wrapper>
+            </UserPageTemplate>
         );
     };
 };

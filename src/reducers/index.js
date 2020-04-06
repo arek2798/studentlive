@@ -1,5 +1,6 @@
 const initialState = {
-    userID: "A12D",
+    // userID: "A12D",
+    userID: "",
     isLoading: false,
     subjects: [],
     notes: [],
@@ -10,6 +11,20 @@ const initialState = {
 
 const rootReducer = (state = initialState, action) => {
     switch (action.type) {
+        case ('ADD_USER_SUCCESS'):
+            let err;
+            if (!action.payload.data) err = "Konto o takim adresie e-mail już istnieje";
+            return {
+                ...state,
+                error: err
+            }
+        case ('LOGIN_USER_SUCCESS'):
+            localStorage.setItem('userID', action.payload.data._id);
+            return {
+                ...state,
+                userID: action.payload.data._id,
+                user: action.payload.data,
+            }
         case ('FETCH_SUBJECTS_SUCCESS'):
             return {
                 ...state,

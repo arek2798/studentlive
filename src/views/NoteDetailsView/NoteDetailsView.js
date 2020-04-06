@@ -1,4 +1,5 @@
 import React from 'react';
+import UserPageTemplate from '../../templates/UserPageTemplate';
 import { connect } from 'react-redux';
 import { fetchOneNote, editNote } from '../../actions';
 import { Link, Redirect } from 'react-router-dom';
@@ -88,19 +89,21 @@ class NoteDetailsView extends React.Component {
         }
 
         return (
-            <Wrapper>
-                <Header>
-                    <Title>{!this.state.edit ? note.title : <Input placeholder="tytuł" id="title" value={title} onChange={this.handleChangeText} />}</Title>
-                    <Category>Kategoria: {!this.state.edit ? (note.category ? note.category : <span>brak</span>) : <Input placeholder="kategoria" id="category" value={category} onChange={this.handleChangeText} />}</Category>
-                </Header>
-                <Content>
-                    {!this.state.edit ? (note.content ? note.content : <p>Brak treści</p>) : <Input as="textarea" textarea resize="none" placeholder="treść" id="content" value={content} onChange={this.handleChangeText} />}
-                    <ButtonsWrapper>
-                        {!this.state.edit ? <Button onClick={() => this.handleEdit(note)} large>edytuj</Button> : <Button onClick={this.handleSave} large>zapisz</Button>}
-                        {!this.state.edit && <Link to="/notes"><Button large>zamknij</Button></Link>}
-                    </ButtonsWrapper>
-                </Content>
-            </Wrapper >
+            <UserPageTemplate>
+                <Wrapper>
+                    <Header>
+                        <Title>{!this.state.edit ? note.title : <Input placeholder="tytuł" id="title" value={title} onChange={this.handleChangeText} />}</Title>
+                        <Category>Kategoria: {!this.state.edit ? (note.category ? note.category : <span>brak</span>) : <Input placeholder="kategoria" id="category" value={category} onChange={this.handleChangeText} />}</Category>
+                    </Header>
+                    <Content>
+                        {!this.state.edit ? (note.content ? note.content : <p>Brak treści</p>) : <Input as="textarea" textarea resize="none" placeholder="treść" id="content" value={content} onChange={this.handleChangeText} />}
+                        <ButtonsWrapper>
+                            {!this.state.edit ? <Button onClick={() => this.handleEdit(note)} large>edytuj</Button> : <Button onClick={this.handleSave} large>zapisz</Button>}
+                            {!this.state.edit && <Link to="/notes"><Button large>zamknij</Button></Link>}
+                        </ButtonsWrapper>
+                    </Content>
+                </Wrapper >
+            </UserPageTemplate >
         )
     }
 }

@@ -1,5 +1,47 @@
 import axios from 'axios';
 
+export const addNewUser = (newUser) => (dispatch) => {
+    dispatch({ type: 'ADD_USER_REQUEST' });
+
+    return axios
+        .post('http://localhost:9000/api/user', {
+            ...newUser
+        })
+        .then(({ data }) => {
+            dispatch({
+                type: 'ADD_USER_SUCCESS',
+                payload: {
+                    data
+                },
+            })
+        })
+        .catch(err => {
+            console.log(err);
+            dispatch({ type: 'ADD_USER_FAILURE' })
+        })
+}
+
+export const loginUser = (user) => (dispatch) => {
+    dispatch({ type: 'LOGIN_USER_REQUEST' });
+    return axios
+        .post('http://localhost:9000/api/user/signin', {
+            email: user.email,
+            password: user.password
+        })
+        .then(({ data }) => {
+            dispatch({
+                type: 'LOGIN_USER_SUCCESS',
+                payload: {
+                    data
+                },
+            })
+        })
+        .catch(err => {
+            console.log(err);
+            dispatch({ type: 'LOGIN_USER_FAILURE' })
+        })
+}
+
 export const addNewSubject = (subjectContent) => (dispatch, getState) => {
     dispatch({ type: 'ADD_SUBJECT_REQUEST' });
 

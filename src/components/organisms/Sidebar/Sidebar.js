@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import LogoImg from '../../../assets/StudentLive.svg';
 import Avatar from '../../molecules/Avatar/Avatar';
 import Nav from '../../molecules/Nav/Nav';
-// import Logout from '../../atoms/Logout/Logout';
+import Logout from '../../atoms/Logout/Logout';
 
 const Wrapper = styled.section`
     background: #212328;
@@ -23,7 +23,7 @@ const Sidebar = () => (
         <Logo src={LogoImg} alt="Logo StudentLive" />
         <Avatar />
         <Nav />
-        {/* <Logout /> */}
+        <Logout />
     </Wrapper>
 );
 

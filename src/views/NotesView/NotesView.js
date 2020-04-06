@@ -1,4 +1,5 @@
 import React from 'react';
+import UserPageTemplate from '../../templates/UserPageTemplate';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import FilterButton from '../../components/atoms/FilterButton/FilterButton';
@@ -92,7 +93,7 @@ class NotesView extends React.Component {
         const filterNotes = this.props.notes.filter(note => note.category.toLowerCase() === this.state.activeCategory || this.state.activeCategory === 'wszystkie');
 
         return (
-            <>
+            <UserPageTemplate>
                 <Wrapper>
                     <CategoryFilter numberOf={category.length + 1}>
                         {category.map((category) => <FilterButton key={category} click={() => this.changeActive(category)} active={category === this.state.activeCategory ? true : false}>{category}</FilterButton>)}
@@ -108,7 +109,7 @@ class NotesView extends React.Component {
                     <IconButton onClick={this.handleSidebarToggle}>+</IconButton>
                 </IconFixed>
                 <AddNewNoteSidebar isSidebarActive={this.state.isSidebarActive} toggleSidebar={this.handleSidebarToggle} />
-            </>
+            </UserPageTemplate>
         );
     }
 

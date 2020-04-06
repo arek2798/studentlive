@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
 import AccountImg from '../../atoms/AccountImg/AccountImg';
 import ProfilImg from '../../../assets/ProfilImg.png';
 
@@ -21,14 +22,16 @@ const Range = styled.p`
     font-size: 12px;
 `
 
-const AccountInf = () => (
+const AccountInf = ({ user }) => (
     <Account>
         <AccountImg imgSrc={ProfilImg} />
         <PersonalInf>
-            <Name>Piotrek</Name>
-            <Range>Informatyka</Range>
+            <Name>{!user ? "Nieznajomy" : user.name}</Name>
+            <Range>{!user ? "Nieznany" : user.faculty}</Range>
         </PersonalInf>
     </Account>
 );
 
-export default AccountInf;
+const mapStateToProps = ({ user }) => ({ user });
+
+export default connect(mapStateToProps)(AccountInf);
