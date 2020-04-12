@@ -1,18 +1,21 @@
 import { createStore, applyMiddleware, compose } from 'redux';
-// import { persistStore, persistReducer } from 'redux-persist';
+import { persistStore, persistReducer } from 'redux-persist';
 import thunk from 'redux-thunk';
 import studentApp from '../reducers';
-import { loadState, saveState } from './localStorage';
+import storage from 'redux-persist/lib/storage';
 
-const persistedState = loadState();
-console.log(persistedState);
+const persingConfig = {
+    key: 'root',
+    storage
+}
+
+const persistedReducer = persistReducer(persingConfig, studentApp);
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(studentApp, persistedState, composeEnhancers(applyMiddleware(thunk)));
+const store = createStore(persistedReducer, composeEnhancers(applyMiddleware(thunk)));
 
-store.subscribe(() => {
-    saveState({
-        userID: store.getState().userID
-    })
-})
+let persistor = persistStore(store);
 
-export default store;
+export {
+    persistor,
+    store
+};

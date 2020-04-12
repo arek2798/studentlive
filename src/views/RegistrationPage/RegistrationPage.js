@@ -1,21 +1,21 @@
 import React from 'react';
-// import styled from 'styled-components';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import LoginPageTemplate from '../../templates/LoginPageTemplates';
 import RegistrationForm from '../../components/organisms/RegistrationForm/RegistrationForm';
 
 
-class RegistrationPage extends React.Component {
-    state = {
-
+const RegistrationPage = ({ userID }) => {
+    if (userID) {
+        return <Redirect to="/dashboard" />;
     }
-
-    render() {
-        return (
-            <LoginPageTemplate>
-                <RegistrationForm />
-            </LoginPageTemplate>
-        )
-    }
+    return (
+        <LoginPageTemplate>
+            <RegistrationForm />
+        </LoginPageTemplate>
+    )
 }
 
-export default RegistrationPage;
+const mapStateToProps = ({ userID }) => ({ userID })
+
+export default connect(mapStateToProps)(RegistrationPage);

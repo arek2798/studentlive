@@ -28,6 +28,7 @@ const GlobalStyle = createGlobalStyle`
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         font-weight: 500;
+        cursor: pointer;
     }
 
     .app {

@@ -81,13 +81,13 @@ class Schedule extends React.Component {
 
     componentDidMount() {
         this.props.getSchedule();
+        console.log("mount")
     }
 
     componentDidUpdate() {
         if (this.props.isLoading !== this.state.isLoading) {
             if (this.props.schedule.length === 0) {
                 this.props.createSchedule();
-                // this.props.getSchedule();
                 this.setState({
                     isLoading: false
                 })

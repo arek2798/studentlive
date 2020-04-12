@@ -1,5 +1,4 @@
 const initialState = {
-    // userID: "A12D",
     userID: "",
     isLoading: false,
     subjects: [],
@@ -24,6 +23,11 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 userID: action.payload.data._id,
                 user: action.payload.data,
+            }
+        case ('LOGOUT_USER'):
+            localStorage.removeItem('userID');
+            return {
+                isLoading: false
             }
         case ('FETCH_SUBJECTS_SUCCESS'):
             return {

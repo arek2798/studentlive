@@ -42,6 +42,12 @@ export const loginUser = (user) => (dispatch) => {
         })
 }
 
+export const userLogout = () => (dispatch) => {
+    dispatch({
+        type: 'LOGOUT_USER',
+    })
+}
+
 export const addNewSubject = (subjectContent) => (dispatch, getState) => {
     dispatch({ type: 'ADD_SUBJECT_REQUEST' });
 
