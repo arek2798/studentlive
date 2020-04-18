@@ -85,17 +85,10 @@ class Schedule extends React.Component {
 
     componentDidUpdate() {
         if (this.props.isLoading !== this.state.isLoading) {
-            if (this.props.schedule.length === 0) {
-                this.props.createSchedule();
-                this.setState({
-                    isLoading: false
-                })
-            } else {
-                this.setState({
-                    isLoading: this.props.isLoading,
-                    schedule: this.props.schedule[0].days,
-                })
-            }
+            this.setState({
+                isLoading: this.props.isLoading,
+                schedule: this.props.schedule[0].days,
+            })
         }
     }
 

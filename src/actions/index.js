@@ -14,6 +14,7 @@ export const addNewUser = (newUser) => (dispatch) => {
                     data
                 },
             })
+            return data
         })
         .catch(err => {
             console.log(err);
@@ -298,7 +299,6 @@ export const doTask = (id, task) => (dispatch, getState) => {
 
 export const removeTask = (id) => (dispatch) => {
     dispatch({ type: 'DELETE_TASK_REQUEST' })
-    console.log(id);
 
     return axios
         .delete(`http://localhost:9000/api/task/${id}`)
@@ -358,12 +358,12 @@ export const updateSchedule = (id, days) => (dispatch, getState) => {
         })
 }
 
-export const createSchedule = () => (dispatch, getState) => {
+export const createSchedule = (userID) => (dispatch) => {
     dispatch({ type: 'CREATE_SCHEDULE_REQUEST' });
 
     return axios
         .post('http://localhost:9000/api/schedule', {
-            userID: getState().userID,
+            userID: userID,
             days: [{}, {}, {}, {}, {}]
         })
         .then(({ data }) => {
@@ -376,5 +376,13 @@ export const createSchedule = () => (dispatch, getState) => {
         })
         .catch(err => {
             dispatch({ type: 'CREATE_SCHEDULE_FAILURE' })
+        });
+}
+
+
+export const createUserAndSchedule = (newUser) => (dispatch) => {
+    dispatch(addNewUser(newUser))
+        .then((user) => {
+            dispatch(createSchedule(user._id));
         });
 }

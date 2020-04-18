@@ -1,10 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import UserPageTemplate from '../../templates/UserPageTemplate';
-import { connect } from 'react-redux';
-import { getTasks } from '../../actions';
-import NextEventsFiled from '../../components/molecules/NextEventsField/NextEventsField';
+// import NextEventsFiled from '../../components/molecules/NextEventsField/NextEventsField';
 import NextTasksField from '../../components/molecules/NextTasksField/NextTasksField';
+import NextDaySchedule from '../../components/molecules/NextDaySchedule/NextDaySchedule';
 
 const Wrapper = styled.div`
     display: flex;
@@ -17,15 +16,12 @@ class DashboardView extends React.Component {
 
     }
 
-    componentDidMount() {
-        this.props.getTasks();
-    }
-
     render() {
         return (
             <UserPageTemplate>
                 <Wrapper>
-                    <NextEventsFiled />
+                    <NextDaySchedule />
+                    {/* <NextEventsFiled /> */}
                     <NextTasksField />
                 </Wrapper >
             </UserPageTemplate >
@@ -33,8 +29,4 @@ class DashboardView extends React.Component {
     }
 }
 
-const mapDispatchToProps = dispatch => ({
-    getTasks: () => dispatch(getTasks())
-})
-
-export default connect(null, mapDispatchToProps)(DashboardView);
+export default DashboardView;

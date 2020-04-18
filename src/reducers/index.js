@@ -27,7 +27,13 @@ const rootReducer = (state = initialState, action) => {
         case ('LOGOUT_USER'):
             localStorage.removeItem('userID');
             return {
-                isLoading: false
+                userID: "",
+                isLoading: false,
+                subjects: [],
+                notes: [],
+                tasks: [],
+                schedule: [],
+                events: []
             }
         case ('FETCH_SUBJECTS_SUCCESS'):
             return {

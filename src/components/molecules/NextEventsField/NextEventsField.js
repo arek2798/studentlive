@@ -67,7 +67,8 @@ const NextEventsField = ({ events }) => {
         }
     }
 
-    const upcommingEvents = events.slice(0, 4);
+    // const upcommingEvents = events.slice(0, 4);
+    const upcommingEvents = [];
 
     return (
         <Field>

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { addNewUser } from '../../../actions';
+import { createUserAndSchedule } from '../../../actions';
 import LoginInput from '../../atoms/LoginInput/LoginInput';
 import Button from '../../atoms/Button/Button';
 
@@ -67,7 +67,7 @@ class RegistrationForm extends React.Component {
             })
             delete newUser.error;
             delete newUser.confirmPassword;
-            this.props.addNewUser(newUser);
+            this.props.createUserAndSchedule(newUser);
         }
     }
 
@@ -90,7 +90,7 @@ class RegistrationForm extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-    addNewUser: (user) => dispatch(addNewUser(user))
+    createUserAndSchedule: (user) => dispatch(createUserAndSchedule(user))
 })
 
 const mapStateToProps = ({ error }) => ({ error })
