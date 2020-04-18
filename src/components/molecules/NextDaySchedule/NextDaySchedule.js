@@ -123,7 +123,7 @@ class NextDaySchedule extends React.Component {
                         {this.createDayTabel(index)}
                     </div>
                 ))}
-                <Link to="/calendar"><Button small>Zobacz więcej</Button></Link>
+                <Link to="/schedule"><Button small>Zobacz więcej</Button></Link>
             </Field>
         )
     }

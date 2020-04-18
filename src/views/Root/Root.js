@@ -27,7 +27,7 @@ const App = () => {
                 <Route exact path="/" component={LoginView} />
                 <Route exact path="/registration" component={RegistrationPage} />
                 <ProtectedRoute exact path="/dashboard" component={DashboardView} />
-                <ProtectedRoute exact path="/calendar" component={CalendarView} />
+                <ProtectedRoute exact path="/schedule" component={CalendarView} />
                 <ProtectedRoute exact path="/subjects" component={SubjectsView} />
                 <ProtectedRoute exact path="/notes" component={NotesView} />
                 <Route exact path="/notes/:id" component={NoteDetailsView} />
