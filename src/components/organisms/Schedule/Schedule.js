@@ -81,7 +81,6 @@ class Schedule extends React.Component {
 
     componentDidMount() {
         this.props.getSchedule();
-        console.log("mount")
     }
 
     componentDidUpdate() {
