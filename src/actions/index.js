@@ -4,7 +4,7 @@ export const addNewUser = (newUser) => (dispatch) => {
     dispatch({ type: 'ADD_USER_REQUEST' });
 
     return axios
-        .post('http://localhost:9000/api/user', {
+        .post('https://studentlive-backend.herokuapp.com/api/user', {
             ...newUser
         })
         .then(({ data }) => {
@@ -25,7 +25,7 @@ export const addNewUser = (newUser) => (dispatch) => {
 export const loginUser = (user) => (dispatch) => {
     dispatch({ type: 'LOGIN_USER_REQUEST' });
     return axios
-        .post('http://localhost:9000/api/user/signin', {
+        .post('https://studentlive-backend.herokuapp.com/api/user/signin', {
             email: user.email,
             password: user.password
         })
@@ -53,7 +53,7 @@ export const addNewSubject = (subjectContent) => (dispatch, getState) => {
     dispatch({ type: 'ADD_SUBJECT_REQUEST' });
 
     return axios
-        .post('http://localhost:9000/api/subject', {
+        .post('https://studentlive-backend.herokuapp.com/api/subject', {
             userID: getState().userID,
             ...subjectContent
         })
@@ -75,7 +75,7 @@ export const fetchSubjects = () => (dispatch, getState) => {
     dispatch({ type: 'FETCH_SUBJECTS_REQUEST' });
 
     return axios
-        .get('http://localhost:9000/api/subjects', {
+        .get('https://studentlive-backend.herokuapp.com/api/subjects', {
             params: {
                 userID: getState().userID,
             },
@@ -97,7 +97,7 @@ export const fetchSubjects = () => (dispatch, getState) => {
 export const editSubject = (subject) => (dispatch) => {
     dispatch({ type: 'UPDATE_SUBJECT_REQUEST' });
     return axios
-        .put(`http://localhost:9000/api/subject/${subject._id}`, subject)
+        .put(`https://studentlive-backend.herokuapp.com/api/subject/${subject._id}`, subject)
         .then(({ data }) => {
             dispatch({
                 type: 'UPDATE_SUBJECT_SUCCESS',
@@ -116,7 +116,7 @@ export const removeSubject = (id) => (dispatch) => {
     dispatch({ type: 'DELETE_SUBJECT_REQUEST' });
 
     return axios
-        .delete(`http://localhost:9000/api/subject/${id}`)
+        .delete(`https://studentlive-backend.herokuapp.com/api/subject/${id}`)
         .then(() => {
             dispatch({
                 type: 'DELETE_SUBJECT_SUCCESS',
@@ -134,7 +134,7 @@ export const removeSubject = (id) => (dispatch) => {
 export const fetchNotes = () => (dispatch, getState) => {
     dispatch({ type: 'FETCH_NOTES_REQUEST' });
     return axios
-        .get('http://localhost:9000/api/notes', {
+        .get('https://studentlive-backend.herokuapp.com/api/notes', {
             params: {
                 userID: getState().userID
             }
@@ -156,7 +156,7 @@ export const fetchNotes = () => (dispatch, getState) => {
 export const fetchOneNote = (id) => (dispatch) => {
     dispatch({ type: 'FETCH_NOTE_REQUEST' });
     return axios
-        .get('http://localhost:9000/api/note', {
+        .get('https://studentlive-backend.herokuapp.com/api/note', {
             params: {
                 id: id
             }
@@ -180,7 +180,7 @@ export const editNote = (note) => (dispatch) => {
     console.log(note);
 
     return axios
-        .put(`http://localhost:9000/api/note/${note._id}`, note)
+        .put(`https://studentlive-backend.herokuapp.com/api/note/${note._id}`, note)
         .then(({ data }) => {
             dispatch({
                 type: 'UPDATE_NOTE_SUCCESS',
@@ -198,7 +198,7 @@ export const editNote = (note) => (dispatch) => {
 export const addNote = (noteContent) => (dispatch, getState) => {
     dispatch({ type: 'ADD_NOTE_REQUEST' });
     return axios
-        .post('http://localhost:9000/api/note', {
+        .post('https://studentlive-backend.herokuapp.com/api/note', {
             userID: getState().userID,
             ...noteContent
         })
@@ -219,7 +219,7 @@ export const addNote = (noteContent) => (dispatch, getState) => {
 export const removeNote = (id) => (dispatch) => {
     dispatch({ type: 'DELETE_NOTE_REQUEST' })
     return axios
-        .delete(`http://localhost:9000/api/note/${id}`)
+        .delete(`https://studentlive-backend.herokuapp.com/api/note/${id}`)
         .then(() => {
             dispatch({
                 type: 'DELETE_NOTE_SUCCESS',
@@ -237,7 +237,7 @@ export const removeNote = (id) => (dispatch) => {
 export const getTasks = () => (dispatch, getState) => {
     dispatch({ type: 'FETCH_TASKS_REQUEST' });
     return axios
-        .get('http://localhost:9000/api/tasks', {
+        .get('https://studentlive-backend.herokuapp.com/api/tasks', {
             params: {
                 userID: getState().userID
             }
@@ -258,7 +258,7 @@ export const getTasks = () => (dispatch, getState) => {
 export const addTask = (taskContent) => (dispatch, getState) => {
     dispatch({ type: 'ADD_TASK_REQUEST' });
     return axios
-        .post('http://localhost:9000/api/task', {
+        .post('https://studentlive-backend.herokuapp.com/api/task', {
             userID: getState().userID,
             ...taskContent
         })
@@ -278,7 +278,7 @@ export const addTask = (taskContent) => (dispatch, getState) => {
 export const doTask = (id, task) => (dispatch, getState) => {
     dispatch({ type: 'DO_TASK_REQUEST' });
     return axios
-        .put(`http://localhost:9000/api/task/${id}`, {
+        .put(`https://studentlive-backend.herokuapp.com/api/task/${id}`, {
             userID: getState().userID,
             ...task
         })
@@ -301,7 +301,7 @@ export const removeTask = (id) => (dispatch) => {
     dispatch({ type: 'DELETE_TASK_REQUEST' })
 
     return axios
-        .delete(`http://localhost:9000/api/task/${id}`)
+        .delete(`https://studentlive-backend.herokuapp.com/api/task/${id}`)
         .then(() => {
             dispatch({
                 type: 'DELETE_TASK_SUCCESS',
@@ -319,7 +319,7 @@ export const removeTask = (id) => (dispatch) => {
 export const getSchedule = () => (dispatch, getState) => {
     dispatch({ type: 'FETCH_SCHEDULE_REQUEST' });
     return axios
-        .get('http://localhost:9000/api/schedule', {
+        .get('https://studentlive-backend.herokuapp.com/api/schedule', {
             params: {
                 userID: getState().userID
             }
@@ -340,7 +340,7 @@ export const getSchedule = () => (dispatch, getState) => {
 export const updateSchedule = (id, days) => (dispatch, getState) => {
     dispatch({ type: 'UPDATE_SCHEDULE_REQUEST' });
     return axios
-        .put(`http://localhost:9000/api/schedule/${id}`, {
+        .put(`https://studentlive-backend.herokuapp.com/api/schedule/${id}`, {
             userID: getState().userID,
             days
         })
@@ -362,7 +362,7 @@ export const createSchedule = (userID) => (dispatch) => {
     dispatch({ type: 'CREATE_SCHEDULE_REQUEST' });
 
     return axios
-        .post('http://localhost:9000/api/schedule', {
+        .post('https://studentlive-backend.herokuapp.com/api/schedule', {
             userID: userID,
             days: [{}, {}, {}, {}, {}]
         })
