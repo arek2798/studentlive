@@ -26,10 +26,12 @@ const Input = styled.input`
     border-color: #EB5757;
     }
 
-    &[type=date]::-webkit-inner-spin-button,
-    &[type=time]::-webkit-inner-spin-button {
+    &[type=time]::-webkit-inner-spin-button,
+    &[type=date]::-webkit-inner-spin-button{
     display: none;
     -webkit-appearance: none;
+
+    /* &[type=time]::-webkit-inner-spin-button  */
 }
 `
 

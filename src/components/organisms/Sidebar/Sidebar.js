@@ -8,7 +8,7 @@ import Logout from '../../atoms/Logout/Logout';
 const Wrapper = styled.section`
     background: #212328;
     color: #ffffff;
-    width: 310px;
+    width: 250px;
     height: 100vh;
     text-align: center;
     position: fixed;

@@ -8,6 +8,7 @@ import GlobalStyle from '../../theme/GlobalStyle';
 import LoginView from '../LoginView/LoginView';
 import RegistrationPage from '../RegistrationPage/RegistrationPage';
 import DashboardView from '../DashboardView/DashboardView';
+import ScheduleView from '../ScheduleView/ScheduleView';
 import CalendarView from '../CalendarView/CalendarView';
 import SubjectsView from '../SubjectsView/SubjectView';
 import NotesView from '../NotesView/NotesView';
@@ -27,10 +28,11 @@ const App = () => {
                 <Route exact path="/" component={LoginView} />
                 <Route exact path="/registration" component={RegistrationPage} />
                 <ProtectedRoute exact path="/dashboard" component={DashboardView} />
-                <ProtectedRoute exact path="/schedule" component={CalendarView} />
+                <ProtectedRoute exact path="/schedule" component={ScheduleView} />
+                <ProtectedRoute exact path="/calendar" component={CalendarView} />
                 <ProtectedRoute exact path="/subjects" component={SubjectsView} />
                 <ProtectedRoute exact path="/notes" component={NotesView} />
-                <Route exact path="/notes/:id" component={NoteDetailsView} />
+                <ProtectedRoute exact path="/notes/:id" component={NoteDetailsView} />
                 <ProtectedRoute exact path="/todo" component={TodoView} />
               </Switch>
             </div>

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const IconButton = styled.button`
     width: 50px;
     height: 50px;
-    border: none;
+    border: 2px solid #EB5757;
     border-radius: 25px;
     background: #EB5757;
     color: #FFFFFF;

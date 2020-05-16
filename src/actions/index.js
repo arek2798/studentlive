@@ -234,6 +234,70 @@ export const removeNote = (id) => (dispatch) => {
         })
 }
 // ------------------------------------------------------------------------------------------------------------
+
+export const fetchEvents = (month) => (dispatch, getState) => {
+    dispatch({ type: 'FETCH_EVENTS_REQUEST' });
+    return axios
+        .get('https://studentlive-backend.herokuapp.com/api/events', {
+            params: {
+                userID: getState().userID,
+                month
+            }
+        })
+        .then(({ data }) => {
+            dispatch({
+                type: 'FETCH_EVENTS_SUCCESS',
+                payload: {
+                    data
+                }
+            })
+        })
+        .catch(err => {
+            console.log(err);
+            dispatch({ type: 'FETCH_EVENTS_FAILURE' });
+        })
+}
+
+export const addEvent = (eventContent) => (dispatch, getState) => {
+    dispatch({ type: 'ADD_EVENT_REQUEST' });
+    return axios
+        .post('https://studentlive-backend.herokuapp.com/api/event', {
+            userID: getState().userID,
+            ...eventContent
+        })
+        .then(({ data }) => {
+            dispatch({
+                type: 'ADD_EVENT_SUCCESS',
+                payload: {
+                    data
+                }
+            })
+        })
+        .catch(err => {
+            console.log(err);
+            dispatch({ type: 'ADD_EVENT_FAILURE' });
+        })
+}
+
+export const removeEvent = (id) => (dispatch) => {
+    dispatch({ type: 'DELETE_EVENT_REQUEST' })
+    return axios
+        .delete(`https://studentlive-backend.herokuapp.com/api/event/${id}`)
+        .then(() => {
+            dispatch({
+                type: 'DELETE_EVENT_SUCCESS',
+                payload: {
+                    id
+                },
+            });
+        })
+        .catch(err => {
+            console.log(err);
+            dispatch({ type: 'DELETE_EVENT_FAILURE' })
+        })
+}
+
+// ------------------------------------------------------------------------------------------------------------
 export const getTasks = () => (dispatch, getState) => {
     dispatch({ type: 'FETCH_TASKS_REQUEST' });
     return axios

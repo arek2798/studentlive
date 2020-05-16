@@ -42,7 +42,7 @@ const GlobalStyle = createGlobalStyle`
 
     main {
         width: 100%;
-        padding: 30px 30px 30px 340px;
+        padding: 30px 30px 30px 280px;
     }
 `;
 

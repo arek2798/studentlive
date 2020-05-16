@@ -35,6 +35,7 @@ const rootReducer = (state = initialState, action) => {
                 schedule: [],
                 events: []
             }
+        // ------------------------------------------------------------------------------------------------------------   
         case ('FETCH_SUBJECTS_SUCCESS'):
             return {
                 ...state,
@@ -83,6 +84,24 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 notes: [
                     ...state.notes.filter(note => note._id !== action.payload.id)
+                ]
+            }
+        // ------------------------------------------------------------------------------------------------------------
+        case ('FETCH_EVENTS_SUCCESS'):
+            return {
+                ...state,
+                events: action.payload.data
+            }
+        case ('ADD_EVENT_SUCCESS'):
+            return {
+                ...state,
+                events: [...state.events, action.payload.data]
+            }
+        case ('DELETE_EVENT_SUCCESS'):
+            return {
+                ...state,
+                events: [
+                    ...state.events.filter(event => event._id !== action.payload.id)
                 ]
             }
         // ------------------------------------------------------------------------------------------------------------

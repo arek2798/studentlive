@@ -46,9 +46,9 @@ const Label = styled.label`
     }
 `
 
-const CheckboxTask = ({ checked, onChange, children }) => (
+const CheckboxTask = ({ checked, onChange, children, type, name, value }) => (
     <Label>
-        <Input type="checkbox" checked={checked} onChange={onChange} />
+        <Input type={type ? type : "checkbox"} name={name} checked={checked} value={value} onChange={onChange} />
         <Checkmark />
         {children}
     </Label>

@@ -1,11 +1,10 @@
 import styled from 'styled-components';
 
-
 const AddNewSidebar = styled.div`
     position: fixed;
     top: 0;
     right: 0;
-    width: 650px;
+    width: ${({ width }) => width ? width : "650px"};
     height: 100vh;
     padding: 30px 30px 100px;
     background: #FFFFFF;

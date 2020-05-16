@@ -54,7 +54,7 @@ class NoteDetailsView extends React.Component {
     }
 
     componentDidMount() {
-        // this.props.fetchOneNote(this.props.match.params.id);
+        this.props.fetchOneNote(this.props.match.params.id);
     }
 
     handleEdit = (note = '') => {
