@@ -59,7 +59,8 @@ class CalendarView extends React.Component {
 
     addNewSiebarToggle = () => {
         this.setState(prevState => ({
-            addNewSidebarOpen: !prevState.addNewSidebarOpen
+            addNewSidebarOpen: !prevState.addNewSidebarOpen,
+            sidebarActive: false
         }))
     }
 
@@ -75,6 +76,10 @@ class CalendarView extends React.Component {
         })
     }
 
+    updateDay = () => {
+        this.setState({})
+    }
+
     render() {
         const { sidebarActive, addNewSidebarOpen, date, day, month, dayName, todayEvents } = this.state;
         return (
@@ -87,7 +92,7 @@ class CalendarView extends React.Component {
                         </svg>
                     </CloseArrow>
                     <SidebarDate >{dayName}, {day} {numToMonthName(month)}</SidebarDate>
-                    {todayEvents.length ? todayEvents.map((event, index) => <DayEvent key={index} date={event.date} finish={event.finish} content={event.content} color={event.color} />) : <Info>Nic nie zaplanowano na ten dzień!</Info>}
+                    {todayEvents.length ? todayEvents.map((event, index) => <DayEvent key={event._id} id={event._id} date={event.date} finish={event.finish} content={event.content} color={event.color} />) : <Info>Nic nie zaplanowano na ten dzień!</Info>}
                     <IconPosition>
                         <IconButton onClick={this.addNewSiebarToggle}>+</IconButton>
                     </IconPosition>

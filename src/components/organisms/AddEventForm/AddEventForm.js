@@ -66,12 +66,17 @@ class AddEventForm extends React.Component {
 
     handleFormSubmit = (event) => {
         event.preventDefault();
-        console.log("wyślij");
         const eventContent = this.state;
         eventContent.date = this.changeDateTime(this.state.date);
         eventContent.finish = this.changeDateTime(this.state.finish);
-        console.log(eventContent);
         this.props.addEvent(eventContent);
+        this.setState({
+            date: '',
+            finish: '',
+            content: '',
+            color: '#C0C0C0'
+        })
+        this.props.sidebarToggle();
     }
 
     changeDateTime = (time) => {
