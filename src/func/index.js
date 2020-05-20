@@ -28,3 +28,14 @@ export const numToDayName = (num) => {
     }
 }
 
+export const sortEvents = (events) => {
+    events.sort((a, b) => {
+        let firstDate = new Date(a.date);
+        let secondDate = new Date(b.date);
+        if (firstDate.getHours() - secondDate.getHours()) return firstDate.getHours() - secondDate.getHours();
+        else return firstDate.getMinutes() - secondDate.getMinutes()
+    })
+
+    return events;
+}
+

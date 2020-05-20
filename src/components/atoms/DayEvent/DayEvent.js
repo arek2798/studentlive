@@ -36,7 +36,7 @@ const TrashIcon = styled.button`
     }
 `
 
-const DayEvent = ({ removeEvent, id, date, finish, content, color }) => {
+const DayEvent = ({ removeEvent, id, date, finish, content, color, deleteEvents }) => {
     const getTime = (eventDate) => {
         const date = new Date(eventDate);
         return `${date.getHours()}:${date.getMinutes() === 0 ? date.getMinutes() + "0" : date.getMinutes()}`
@@ -44,6 +44,7 @@ const DayEvent = ({ removeEvent, id, date, finish, content, color }) => {
 
     const handleDelete = () => {
         removeEvent(id);
+        deleteEvents(id);
     }
 
     return (

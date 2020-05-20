@@ -4,7 +4,7 @@ import { fetchEvents } from '../../../actions';
 import { connect } from 'react-redux';
 import DataField from '../../atoms/DataField/DataField';
 import CalendarEvent from '../../atoms/CalendarEvent/CalendarEvent';
-import { numToMonthName } from '../../../func';
+import { numToMonthName, sortEvents } from '../../../func';
 
 const Wrapper = styled(DataField)`
     /* position: relative;
@@ -41,7 +41,7 @@ const Table = styled.table`
     width: 910px;
     margin: 20px auto;
     /* position: relative; */
-    transform: translateX(${({ sidebarOpen }) => sidebarOpen ? "-150px" : "0"});
+    /* transform: translateX(${({ sidebarOpen }) => sidebarOpen ? "-150px" : "0"}); */
     transition: all 0.4s ease-in-out;
     border-collapse: collapse;
 
@@ -132,12 +132,7 @@ class Calendar extends React.Component {
             if (eventDate.getFullYear() === year && eventDate.getMonth() === month - 1 && eventDate.getDate() === day) return true;
             return false;
         })
-        todayEvents.sort((a, b) => {
-            let firstDate = new Date(a.date);
-            let secondDate = new Date(b.date);
-            if (firstDate.getHours() - secondDate.getHours()) return firstDate.getHours() - secondDate.getHours();
-            else return firstDate.getMinutes() - secondDate.getMinutes()
-        })
+        todayEvents = sortEvents(todayEvents);
 
         return todayEvents;
     }

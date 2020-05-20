@@ -117,12 +117,12 @@ class NextDaySchedule extends React.Component {
         return (
             <Field>
                 <Heading>plan zajęć</Heading>
-                {daysSchedule.map((day, index) => (
+                {!this.props.isLoading ? daysSchedule.map((day, index) => (
                     <div key={index}>
                         <Day>{this.numToDay(activeDays[index])}:</Day>
                         {this.createDayTabel(index)}
                     </div>
-                ))}
+                )) : <p>Trwa ładowanie...</p>}
                 <Link to="/schedule"><Button small>Zobacz więcej</Button></Link>
             </Field>
         )
@@ -135,7 +135,7 @@ NextDaySchedule.propTypes = {
     getSchedule: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ({ schedule }) => ({ schedule })
+const mapStateToProps = ({ schedule, isLoading }) => ({ schedule, isLoading })
 
 const mapDispatchToProps = (dispatch) => ({
     getSchedule: () => dispatch(getSchedule())

@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { fetchEvents } from '../../../actions';
+import { numToMonthName, sortEvents } from '../../../func';
 import DataField from '../../atoms/DataField/DataField';
 import Button from '../../atoms/Button/Button';
 
@@ -24,7 +26,7 @@ const ListItem = styled.div`
     text-align: center;
 `
 
-const Date = styled.p`
+const DateP = styled.p`
     color: #EB5757;
     width: 200px;
     min-height: 30px;
@@ -35,56 +37,40 @@ const Title = styled.p`
     width: 100%;
 `
 
-const NextEventsField = ({ events }) => {
-    const changeToMonth = (number) => {
-        switch (number) {
-            case 0:
-                return "Styczeń"
-            case 1:
-                return "Luty"
-            case 2:
-                return "Marzec"
-            case 3:
-                return "Kwiecień"
-            case 4:
-                return "Maj"
-            case 5:
-                return "Czerwiec"
-            case 6:
-                return "Lipiec"
-            case 7:
-                return "Sierpień"
-            case 8:
-                return "Wrzesień"
-            case 9:
-                return "Październik"
-            case 10:
-                return "Listopad"
-            case 11:
-                return "Grudzień"
-            default:
-                break;
-        }
+class NextEventsField extends React.Component {
+    state = {
+        year: new Date().getFullYear(),
+        month: new Date().getMonth() + 1,
     }
 
-    // const upcommingEvents = events.slice(0, 4);
-    const upcommingEvents = [];
+    componentDidMount() {
+        const month = this.state.month > 9 ? this.state.month : `0${this.state.month}`;
+        const param = `${this.state.year}-${month}`;
+        this.props.fetchEvents(param);
+    }
 
-    return (
-        <Field>
-            <Heading>najblizsze wydarzenia</Heading>
-            {upcommingEvents.map(event => (
-                <ListItem key={event.id}>
-                    <Date>{event.start.getDate()} {changeToMonth(event.start.getMonth())} {event.start.getFullYear()}</Date>
-                    <Title>{event.title}</Title>
-                </ListItem>
-            ))}
-            <Link to="/calendar"><Button small>Zobacz więcej</Button></Link>
-        </Field>
-    );
+    render() {
+        let sortedEvents = sortEvents(this.props.events);
+
+        return (
+            <Field>
+                <Heading>najbliższe wydarzenia</Heading>
+                {sortedEvents.map(event => (
+                    <ListItem key={event._id}>
+                        <DateP>{new Date(event.date).getDate()} {numToMonthName(new Date(event.date).getMonth())}</DateP>
+                        <Title>{event.content}</Title>
+                    </ListItem>
+                ))}
+                <Link to="/calendar"><Button small>Zobacz więcej</Button></Link>
+            </Field>
+        );
+    }
 }
 
 
-const mapStateToProps = ({ events }) => ({ events })
+const mapStateToProps = ({ events }) => ({ events });
+const mapDispatchToProps = dispatch => ({
+    fetchEvents: (month) => dispatch(fetchEvents(month))
+})
 
-export default connect(mapStateToProps)(NextEventsField);
+export default connect(mapStateToProps, mapDispatchToProps)(NextEventsField);

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import UserPageTemplate from '../../templates/UserPageTemplate';
-// import NextEventsFiled from '../../components/molecules/NextEventsField/NextEventsField';
+import NextEventsFiled from '../../components/molecules/NextEventsField/NextEventsField';
 import NextTasksField from '../../components/molecules/NextTasksField/NextTasksField';
 import NextDaySchedule from '../../components/molecules/NextDaySchedule/NextDaySchedule';
 
@@ -21,8 +21,8 @@ class DashboardView extends React.Component {
             <UserPageTemplate>
                 <Wrapper>
                     <NextDaySchedule />
-                    {/* <NextEventsFiled /> */}
                     <NextTasksField />
+                    <NextEventsFiled />
                 </Wrapper >
             </UserPageTemplate >
         );
