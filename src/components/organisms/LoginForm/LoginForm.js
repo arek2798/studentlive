@@ -51,6 +51,7 @@ class LoginForm extends React.Component {
                 </InputWrapper>
                 <Button type="submit" login >zaloguj się</Button>
                 <p>Nie masz jeszcze konta? <LinkStyled to="/registration">Załóż je!</LinkStyled></p>
+                <p>Wersja demo dostępna po podaniu danych: email:demo hasło: demo</p>
             </Form>
         )
     }
