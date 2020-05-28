@@ -24,6 +24,13 @@ const LinkStyled = styled(Link)`
     text-decoration: underline;
     color: #EB5757;
 `
+const DemoInfo = styled.p`
+    font-size: 10px;
+
+    span {
+        color: #EB5757;
+    }
+`
 
 class LoginForm extends React.Component {
     state = {
@@ -51,7 +58,7 @@ class LoginForm extends React.Component {
                 </InputWrapper>
                 <Button type="submit" login >zaloguj się</Button>
                 <p>Nie masz jeszcze konta? <LinkStyled to="/registration">Załóż je!</LinkStyled></p>
-                <p>Wersja demo dostępna po podaniu danych: email:demo hasło: demo</p>
+                <DemoInfo>Wersja demo dostępna po podaniu danych: email: <span>demo</span> hasło: <span>demo</span></DemoInfo>
             </Form>
         )
     }
