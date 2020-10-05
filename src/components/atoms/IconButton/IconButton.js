@@ -9,7 +9,7 @@ const IconButton = styled.button`
     color: #FFFFFF;
     font-size: 48px;
     font-weight: 500;
-    line-height: 50px;
+    line-height: 40px;
     cursor: pointer;
     outline: none;
     transition: all .1s ease-in-out;

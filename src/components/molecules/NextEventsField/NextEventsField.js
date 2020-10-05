@@ -9,6 +9,11 @@ import Button from '../../atoms/Button/Button';
 
 const Field = styled(DataField)`
     text-align: right;
+
+    & > p {
+        text-align: center;
+        margin-bottom: 10px;
+    }
 `
 
 const Heading = styled.p`
@@ -55,12 +60,12 @@ class NextEventsField extends React.Component {
         return (
             <Field>
                 <Heading>najbliższe wydarzenia</Heading>
-                {sortedEvents.map(event => (
+                {sortedEvents.length ? sortedEvents.map(event => (
                     <ListItem key={event._id}>
                         <DateP>{new Date(event.date).getDate()} {numToMonthName(new Date(event.date).getMonth())}</DateP>
                         <Title>{event.content}</Title>
                     </ListItem>
-                ))}
+                )) : <p>Brak wydarzeń</p>}
                 <Link to="/calendar"><Button small>Zobacz więcej</Button></Link>
             </Field>
         );

@@ -7,8 +7,7 @@ import CalendarEvent from '../../atoms/CalendarEvent/CalendarEvent';
 import { numToMonthName, sortEvents } from '../../../func';
 
 const Wrapper = styled(DataField)`
-    /* position: relative;
-    right: ${({ sidebarOpen }) => sidebarOpen ? "300px" : "inherit"}; */
+    overflow-x: visible;
 `
 const Month = styled.div`
     margin: 10px auto;
@@ -16,6 +15,10 @@ const Month = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    
+    @media (max-width: 800px) {
+        padding: 0px 30px;
+    }
 `
 const Arrow = styled.button`
     background: transparent;
@@ -37,11 +40,13 @@ const MonthName = styled.div`
     font-weight: 500;
     color: #EB5757;
 `
+const TableWrapper = styled.div`
+    max-width: 100%;
+    overflow-x: scroll;
+`
 const Table = styled.table`
     width: 910px;
     margin: 20px auto;
-    /* position: relative; */
-    /* transform: translateX(${({ sidebarOpen }) => sidebarOpen ? "-150px" : "0"}); */
     transition: all 0.4s ease-in-out;
     border-collapse: collapse;
 
@@ -172,22 +177,24 @@ class Calendar extends React.Component {
                         <path d="M13.9393 13.3287L4.44983 22.8181C3.99216 23.2757 3.25017 23.2757 2.79255 22.8181L1.68577 21.7113C1.22888 21.2544 1.228 20.5139 1.68381 20.056L9.20437 12.5L1.68381 4.9441C1.228 4.48614 1.22888 3.74567 1.68577 3.28878L2.79255 2.18199C3.25022 1.72433 3.99221 1.72433 4.44983 2.18199L13.9392 11.6714C14.3969 12.129 14.3969 12.871 13.9393 13.3287Z" fill="#CCCCCC" />
                     </svg></Arrow>
                 </Month>
-                <Table sidebarOpen={sidebarOpen}>
-                    <thead>
-                        <tr>
-                            <th>pon</th>
-                            <th>wto</th>
-                            <th>śro</th>
-                            <th>czw</th>
-                            <th>pią</th>
-                            <th>sob</th>
-                            <th>nie</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {this.createTable()}
-                    </tbody>
-                </Table>
+                <TableWrapper>
+                    <Table sidebarOpen={sidebarOpen}>
+                        <thead>
+                            <tr>
+                                <th>pon</th>
+                                <th>wto</th>
+                                <th>śro</th>
+                                <th>czw</th>
+                                <th>pią</th>
+                                <th>sob</th>
+                                <th>nie</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {this.createTable()}
+                        </tbody>
+                    </Table>
+                </TableWrapper>
             </Wrapper>
         )
     }

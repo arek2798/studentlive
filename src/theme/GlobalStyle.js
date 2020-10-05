@@ -44,6 +44,12 @@ const GlobalStyle = createGlobalStyle`
         width: 100%;
         padding: 30px 30px 30px 280px;
     }
+
+    @media (max-width: 800px) {
+        main {
+            padding: 30px;
+        }
+    }
 `;
 
 export default GlobalStyle;

@@ -14,6 +14,10 @@ const Form = styled.form`
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+
+    @media(max-width: 800px) {
+        padding-top: 35px;
+    }
 `
 
 const StyledLabel = styled(Label)`
@@ -24,6 +28,12 @@ const StyledLabel = styled(Label)`
 const InputWrapper = styled.div`
     display: grid;
     grid-template-columns: 350px auto;
+    max-width: 100%;
+
+    @media(max-width: 500px) {
+        grid-template-columns: none;
+        grid-template-rows: 50px 40px;
+    }
 `
 
 class AddTaskForm extends React.Component {
@@ -78,7 +88,7 @@ class AddTaskForm extends React.Component {
                 <StyledLabel>Termin wykonania zadania:</StyledLabel>
                 <InputWrapper>
                     <Input width="300px" type="date" id="date" value={date} onChange={this.handleText} required />
-                    <Input width="100px" type="time" id="time" value={time} onChange={this.handleText} />
+                    <Input width="130px" type="time" id="time" value={time} onChange={this.handleText} />
                 </InputWrapper>
                 <CheckboxTask onChange={this.handleCheckbox} checked={important}>ważne</CheckboxTask>
                 <Button large type="submit">dodaj</Button>

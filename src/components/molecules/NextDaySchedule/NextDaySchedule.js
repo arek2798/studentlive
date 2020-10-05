@@ -33,7 +33,7 @@ const ListItem = styled.div`
 
 const Time = styled.p`
     color: #EB5757;
-    width: 120px;
+    width: 140px;
     min-height: 30px;
     border-right: 3px solid #EEEEEE;
 `

@@ -16,10 +16,16 @@ const Wrapper = styled.div`
 `
 
 const CategoryFilter = styled.div`
+    width: 100%;
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(${props => props.numberOf}, min-content);
     grid-column-gap: 10px;
+    overflow-x: scroll;
+ 
+    @media (max-width: 800px) {
+        padding-left: 40px;
+    }
 `;
 
 const NotesGrid = styled.div`

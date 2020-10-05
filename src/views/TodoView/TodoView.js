@@ -9,10 +9,16 @@ import IconButton from '../../components/atoms/IconButton/IconButton';
 import AddNewTaskSidebar from '../../components/organisms/AddNewTask/AddNewTask';
 
 const CategoryFilter = styled.div`
+    width: 100%;
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(4, min-content);
     grid-column-gap: 10px;
+    overflow-x: scroll;
+
+    @media (max-width: 800px) {
+        padding-left: 40px;
+    }
 `
 const TasksWrapper = styled.div`
     padding: 15px 0;
@@ -23,7 +29,7 @@ const IconFixed = styled.div`
     position: fixed;
     bottom: 40px;
     right: 40px;
-    z-index: 1000;
+    z-index: 5;
 `
 
 const Info = styled.p`

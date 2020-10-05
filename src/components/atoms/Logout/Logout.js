@@ -9,7 +9,7 @@ const LogoutBtn = styled.button`
     justify-content: flex-end;
     align-items: center;
     position: absolute;
-    bottom: 30px;
+    bottom: 100px;
     padding: 10px 10px 10px 50px;
     color: inherit;
     background: #F67280;

@@ -6,6 +6,7 @@ const AddNewSidebar = styled.div`
     right: 0;
     width: ${({ width }) => width ? width : "650px"};
     height: 100vh;
+    max-width: 100vw;
     padding: 30px 30px 100px;
     background: #FFFFFF;
     border-left: 5px solid #EB5757;

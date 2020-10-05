@@ -7,6 +7,14 @@ import DataField from '../../atoms/DataField/DataField';
 import Button from '../../atoms/Button/Button';
 import Modal from '../../molecules/Modal/Modal';
 
+const DataFieldStyled = styled(DataField)`
+    overflow-x: visible;
+`
+const TableWrapper = styled.div`
+    width: 100%;
+    max-height: calc(100vh - 100px);
+    overflow: scroll;
+`
 const Table = styled.table`
     width: 100%;
     border-collapse: collapse;
@@ -126,28 +134,30 @@ class Schedule extends React.Component {
 
     render() {
         return (
-            <DataField>
-                <Table>
-                    <caption>Plan zajęć</caption>
-                    <thead>
-                        <tr>
-                            <th>Godziny zajęć</th>
-                            <th>Poniedziałek</th>
-                            <th>Wtorek</th>
-                            <th>Środa</th>
-                            <th>Czwartek</th>
-                            <th>Piątek</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {!this.state.isLoading && (this.state.editMode ? this.createTable(true) : this.createTable())}
-                    </tbody>
-                </Table>
-                {this.state.isLoading && <Modal height="60px">Trwa ładowanie...</Modal>}
+            <DataFieldStyled>
+                <TableWrapper>
+                    <Table>
+                        <caption>Plan zajęć</caption>
+                        <thead>
+                            <tr>
+                                <th>Godziny zajęć</th>
+                                <th>Poniedziałek</th>
+                                <th>Wtorek</th>
+                                <th>Środa</th>
+                                <th>Czwartek</th>
+                                <th>Piątek</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {!this.state.isLoading && (this.state.editMode ? this.createTable(true) : this.createTable())}
+                        </tbody>
+                    </Table>
+                    {this.state.isLoading && <Modal height="60px">Trwa ładowanie...</Modal>}
+                </TableWrapper>
                 <ButtonWrapper>
                     <Button onClick={this.handleEditMode}>{this.state.editMode ? "Zapisz plan zajęć" : "Zmień plan zajęć"}</Button>
                 </ButtonWrapper>
-            </DataField>
+            </DataFieldStyled>
         )
     }
 }

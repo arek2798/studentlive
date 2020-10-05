@@ -9,6 +9,12 @@ const Wrapper = styled.div`
     display: flex;
     justify-content: space-around;
     align-items: flex-start;
+    flex-wrap: wrap;
+
+    & > div {
+        margin: 0 10px 10px;
+        min-width: 300px;
+    }
 `
 
 class DashboardView extends React.Component {
