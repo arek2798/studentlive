@@ -17,22 +17,17 @@ const Wrapper = styled.div`
     }
 `
 
-class DashboardView extends React.Component {
-    state = {
+const DashboardView = () => {
 
-    }
-
-    render() {
-        return (
-            <UserPageTemplate>
-                <Wrapper>
-                    <NextDaySchedule />
-                    <NextTasksField />
-                    <NextEventsFiled />
-                </Wrapper >
-            </UserPageTemplate >
-        );
-    }
+    return (
+        <UserPageTemplate>
+            <Wrapper>
+                <NextDaySchedule />
+                <NextTasksField />
+                <NextEventsFiled />
+            </Wrapper >
+        </UserPageTemplate >
+    );
 }
 
 export default DashboardView;

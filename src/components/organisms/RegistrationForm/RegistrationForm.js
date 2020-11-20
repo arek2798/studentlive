@@ -81,7 +81,7 @@ class RegistrationForm extends React.Component {
                     <LoginInput placeholder="imię" name="name" value={this.state.name} onChange={this.handleInput} />
                     <LoginInput placeholder="kierunek" name="faculty" value={this.state.faculty} onChange={this.handleInput} />
                 </InputWrapper>
-                <Error>{this.state.error || this.props.error}</Error>
+                <Error>{this.state.error || (this.props.errorCode === 11 && "Konto o takim adresie e-mail już istnieje")}</Error>
                 <Button type="submit" login >zarejestruj się</Button>
                 <p>Posiadasz już konto? <LinkStyled to="/">Zaloguj się!</LinkStyled></p>
             </Form>
@@ -93,6 +93,6 @@ const mapDispatchToProps = dispatch => ({
     createUserAndSchedule: (user) => dispatch(createUserAndSchedule(user))
 })
 
-const mapStateToProps = ({ error }) => ({ error })
+const mapStateToProps = ({ errorCode }) => ({ errorCode })
 
 export default connect(mapStateToProps, mapDispatchToProps)(RegistrationForm);

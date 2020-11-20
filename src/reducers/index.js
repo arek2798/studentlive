@@ -1,6 +1,7 @@
 const initialState = {
     userID: "",
     isLoading: false,
+    errorCode: 0,
     subjects: [],
     notes: [],
     tasks: [],
@@ -12,10 +13,10 @@ const rootReducer = (state = initialState, action) => {
     switch (action.type) {
         case ('ADD_USER_SUCCESS'):
             let err;
-            if (!action.payload.data) err = "Konto o takim adresie e-mail już istnieje";
+            if (!action.payload.data) err = 11;
             return {
                 ...state,
-                error: err
+                errorCode: err
             }
         case ('LOGIN_USER_SUCCESS'):
             localStorage.setItem('userID', action.payload.data._id);
@@ -23,6 +24,7 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 userID: action.payload.data._id,
                 user: action.payload.data,
+                errorCode: action.payload.data.errorCode,
             }
         case ('LOGOUT_USER'):
             localStorage.removeItem('userID');
@@ -74,6 +76,8 @@ const rootReducer = (state = initialState, action) => {
         case ('UPDATE_NOTE_SUCCESS'):
             const notes = state.notes;
             notes[action.payload.data._id] = action.payload.data;
+            console.log(notes)
+            console.log(notes[action.payload.data._id])
             console.log(action.payload.data)
             return {
                 ...state,

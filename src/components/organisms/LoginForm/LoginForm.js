@@ -8,7 +8,7 @@ import Button from '../../atoms/Button/Button';
 
 const Form = styled.form`
     display: flex;
-    height: 230px;
+    height: 250px;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
@@ -20,8 +20,21 @@ const InputWrapper = styled.div`
     align-items: center;
     justify-content: space-between;
 `
+const PassForgot = styled.p`
+    width: 100%;
+    font-size: 10px;
+    text-align: right;
+    
+    a {
+        color: #FFFFFF;
+    }
+`
 const LinkStyled = styled(Link)`
     text-decoration: underline;
+    color: #EB5757;
+`
+const Error = styled.p`
+    font-size: 14px;
     color: #EB5757;
 `
 const DemoInfo = styled.p`
@@ -53,9 +66,12 @@ class LoginForm extends React.Component {
         return (
             <Form onSubmit={this.handleSubmit}>
                 <InputWrapper>
-                    <LoginInput placeholder="e-mail" name="email" value={this.state.email} onChange={this.handleInput} />
-                    <LoginInput type="password" placeholder="hasło" name="password" value={this.state.password} onChange={this.handleInput} />
+                    <LoginInput placeholder="e-mail" name="email" value={this.state.email} onChange={this.handleInput} required />
+                    <LoginInput type="password" placeholder="hasło" name="password" value={this.state.password} onChange={this.handleInput} required />
+                    {/* <PassForgot><LinkStyled to="/registration">Nie pamiętam hasła</LinkStyled></PassForgot> */}
                 </InputWrapper>
+                {this.props.errorCode === 21 && <Error>Konto o takim adresie e-mail nie istnieje</Error>}
+                {this.props.errorCode === 22 && <Error>Wprowadzone hasło jest nieprawidłowe</Error>}
                 <Button type="submit" login >zaloguj się</Button>
                 <p>Nie masz jeszcze konta? <LinkStyled to="/registration">Załóż je!</LinkStyled></p>
                 <DemoInfo>Wersja demo dostępna po podaniu danych: email: <span>demo</span> hasło: <span>demo</span></DemoInfo>
@@ -64,8 +80,10 @@ class LoginForm extends React.Component {
     }
 }
 
+const mapStateToProps = ({ errorCode }) => ({ errorCode });
+
 const mapDispatchToProps = dispatch => ({
     loginUser: (user) => dispatch(loginUser(user))
 })
 
-export default connect(null, mapDispatchToProps)(LoginForm);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import ProtectedRoute from '../../routes/ProtectedRoute';
 import { store, persistor } from './../../store';
@@ -15,8 +15,18 @@ import NotesView from '../NotesView/NotesView';
 import NoteDetailsView from '../NoteDetailsView/NoteDetailsView';
 import TodoView from '../TodoView/TodoView';
 import { PersistGate } from 'redux-persist/integration/react';
+import firebase from '../../firebase';
 
 const App = () => {
+  useEffect(() => {
+    const msg = firebase.messaging();
+    msg.requestPermission().then(() => {
+      return msg.getToken();
+    }).then((data) => {
+      console.warn("token", data)
+    })
+  })
+
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
