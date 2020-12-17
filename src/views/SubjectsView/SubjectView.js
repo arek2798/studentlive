@@ -8,6 +8,7 @@ import Modal from '../../components/molecules/Modal/Modal';
 import Form from '../../components/organisms/Form/Form';
 import DataField from '../../components/atoms/DataField/DataField';
 import Table from '../../components/atoms/Table/Table';
+import { Trash, Settings } from 'react-feather';
 
 const Wrapper = styled.div`
     display: flex;
@@ -17,6 +18,24 @@ const TableWrapper = styled.div`
     width: 100%;
     max-height: calc(100vh - 100px);
     overflow: scroll;
+    
+    &::-webkit-scrollbar {
+        display: none;
+    }
+`
+const Options = styled.td`
+    display: flex;
+    width: 70px;
+    justify-content: space-around;
+
+    svg {
+        transition: all .3s ease-in-out;
+    }
+
+    svg:hover {
+        color: #EB5757;
+        cursor: pointer;
+    }
 `
 const Correct = styled.span`
     color: #27AE60;
@@ -86,7 +105,6 @@ class SubjectsView extends React.Component {
                                         <th>zaliczenie</th>
                                         <th>ocena</th>
                                         <th></th>
-                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -97,8 +115,12 @@ class SubjectsView extends React.Component {
                                             <td>{subject.ects}</td>
                                             <td>{subject.credit ? <Correct>TAK</Correct> : <Wrong>NIE</Wrong>}</td>
                                             <td>{(subject.grade === null) ? <span>-</span> : <span>{subject.grade}</span>}</td>
-                                            <td><Button small onClick={() => this.changeData(subject._id)}>zmien dane</Button></td>
-                                            <td><Button small onClick={() => removeSubject(subject._id)}>usuń</Button></td>
+                                            <Options>
+                                                <Settings size={20} onClick={() => this.changeData(subject._id)} />
+                                                <Trash size={20} onClick={() => removeSubject(subject._id)} />
+                                            </Options>
+                                            {/* <td><Button small onClick={() => this.changeData(subject._id)}>zmien dane</Button></td>
+                                            <td><Button small onClick={() => removeSubject(subject._id)}>usuń</Button></td> */}
                                         </tr>
                                     ))}
                                 </tbody>

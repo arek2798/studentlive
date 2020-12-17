@@ -9,13 +9,13 @@ const IconButton = styled.button`
     color: #FFFFFF;
     font-size: 48px;
     font-weight: 500;
-    line-height: 40px;
+    line-height: 25px;
     cursor: pointer;
     outline: none;
     transition: all .1s ease-in-out;
 
     &:hover {
-       background: #FFFFFF;
+       background: #25292E;
        color: #EB5757
     }
 `

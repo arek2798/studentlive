@@ -8,38 +8,77 @@ import Button from '../../atoms/Button/Button';
 import Modal from '../../molecules/Modal/Modal';
 
 const DataFieldStyled = styled(DataField)`
-    overflow-x: visible;
+    overflow-x: scroll;
+    position: relative;
 `
 const TableWrapper = styled.div`
     width: 100%;
     max-height: calc(100vh - 100px);
     overflow: scroll;
+
+    &::-webkit-scrollbar-track
+    {
+        box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        border-radius: 10px;
+        background-color: #2F3438;
+    }
+
+    &::-webkit-scrollbar
+    {
+        width: 8px;
+        height: 8px;
+        background-color: #2F3438;
+    }
+
+    &::-webkit-scrollbar-thumb
+    {
+        border-radius: 10px;
+        box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+        background-color: #EB5757;
+    }
+
+    &::-webkit-scrollbar-corner {
+        background: #2F3438;
+    }
+
+    @media (max-width: 500px) {
+        &::-webkit-scrollbar
+        {
+            display: none;
+        }
+    }
 `
 const Table = styled.table`
     width: 100%;
     border-collapse: collapse;
     font-size: 13px;
     text-align: center;
+    color: #DEDEDE;
+    position: relative;
 
     caption {
         font-size: 20px;
         font-weight: 500;
         margin-bottom: 10px;
-        margin-left: 20px;
+        margin-left: 50px;
         text-align: left;
     }
 
     thead {
+
         tr {
-            border-bottom: 2px solid #CCCCCC;
+            border-bottom: 2px solid #25292E;
         }
         th:first-child {
             width: 10%;
         }
         th {
             width: calc(100%/6);
-            border-right: solid 2px #CCCCCC;
+            position: sticky;
+            top: 0;
+            border-right: solid 2px #25292E;
             padding: 0 0 5px;
+            background: #4F565A;
         }
         th:last-child {
             border-right: none;
@@ -48,22 +87,33 @@ const Table = styled.table`
 
     tbody {
         tr td:first-child {
-            color: #EB5757;
+            /* color: #EB5757; */
+            /* color: #EB5757; */
             font-size: 12px;
             font-weight: 500;
+            position: sticky;
+            left: 0;
+            /* background: #3E4549; */
+            background: #4F565A;
+            /* background: #1E3438; */
         }
         tr {
-            border-bottom: solid 1px #DDDDDD;
+            border-bottom: solid 2px #25292E;
         }
         tr td {
             padding: 5px;
-            border-right: solid 2px #CCCCCC;
+            border-right: solid 2px #25292E;
         }
         tr td:last-child {
             border-right: none;
         }
     }
+
+    @media (max-width: 800px) {
+        font-size: 11px;
+    }
 `
+
 const ButtonWrapper = styled.div`
     text-align: right;
     padding: 5px 10px;

@@ -13,6 +13,7 @@ const Event = styled.div`
     grid-column-gap: 10px;
     border-left: 4px solid ${({ color }) => color ? color : "#4B6584"};
     padding: 10px 5px;
+    color: #FFFFFF;
 `
 const Time = styled.div`
     width: 55px;

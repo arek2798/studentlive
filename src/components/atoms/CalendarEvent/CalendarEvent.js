@@ -9,7 +9,8 @@ const Event = styled.p`
     border-radius: 5px;
     font-size: 12px;
     background: ${({ color }) => color ? color : '#77ADFF'};
-    color: #FFFFFF;
+    color: #DEDEDE;
+    overflow: hidden;
 `
 
 const CalendarEvent = ({ content, color }) => {

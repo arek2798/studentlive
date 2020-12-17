@@ -7,13 +7,13 @@ import NextDaySchedule from '../../components/molecules/NextDaySchedule/NextDayS
 
 const Wrapper = styled.div`
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-start;
     align-items: flex-start;
+    justify-items: left;
     flex-wrap: wrap;
 
     & > div {
         margin: 0 10px 10px;
-        min-width: 300px;
     }
 `
 

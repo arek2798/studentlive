@@ -17,7 +17,7 @@ const Form = styled.form`
 `
 const StyledLabel = styled(Label)`
     font-size: 16px;
-    color: #4B6584;
+    color: #FFFFFF;
     margin-bottom: 10px;
 `
 const SectionWrapper = styled.div`
@@ -89,14 +89,14 @@ class AddEventForm extends React.Component {
         const { date, finish, content, color } = this.state;
 
         return (
-            <Form onSubmit={this.handleFormSubmit}>
+            <Form onSubmit={this.handleFormSubmit} autoComplete="off">
                 <Heading>Dodaj do kalendarza</Heading>
                 <Input placeholder="wydarzenie" id="content" value={content} onChange={this.handleContent} required />
                 <SectionWrapper height="70px">
                     <StyledLabel>Czas trwania:</StyledLabel>
                     <TimeInputWrapper>
-                        <Input width="100px" type="time" id="date" value={date} onChange={this.handleDateSet} required /> -
-                        <Input width="100px" type="time" id="finish" value={finish} onChange={this.handleDateSet} required />
+                        <Input width="110px" type="time" id="date" value={date} onChange={this.handleDateSet} required /> -
+                        <Input width="110px" type="time" id="finish" value={finish} onChange={this.handleDateSet} required />
                     </TimeInputWrapper>
                 </SectionWrapper>
                 <SectionWrapper height="200px">

@@ -14,7 +14,7 @@ const Checkmark = styled.span`
     left: 0;
     height: 15px;
     width: 15px;
-    background-color: #EEEEEE;
+    background-color: #25292E;
 
     
     ${Input}:checked ~ &::after {
@@ -42,7 +42,7 @@ const Label = styled.label`
     font-weight: 500;
 
     &:hover ${Input} ~ ${Checkmark} {
-        background-color: #CCCCCC;
+        background-color: #363A3F;
     }
 `
 

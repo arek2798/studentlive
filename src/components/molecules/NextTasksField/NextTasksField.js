@@ -9,12 +9,20 @@ import Button from '../../atoms/Button/Button';
 const Field = styled(DataField)`
     text-align: right;
     min-width: 300px;
+    
+    @media (max-width: 800px) {
+        min-width: 500px;
+    }
+
+    @media (max-width: 500px) {
+        min-width: calc(100% - 20px);
+    }
 `
 
 const Heading = styled.p`
     font-size: 16px;
     font-weight: 500;
-    color: #828282;
+    color: #DEDEDE;
     margin-bottom: 20px;
     text-align: center;
 `
@@ -30,11 +38,12 @@ const Date = styled.p`
     color: #EB5757;
     width: 240px;
     min-height: 30px;
-    border-right: 3px solid #EEEEEE;
+    border-right: 3px solid #25292E;
 `
 
 const Title = styled.p`
     width: 100%;
+    color: #DEDEDE;
 `
 const Info = styled.p`
     font-size: 14px;

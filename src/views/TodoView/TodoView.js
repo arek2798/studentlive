@@ -7,6 +7,7 @@ import { getTasks, doTask } from '../../actions';
 import Task from '../../components/molecules/Task/Task';
 import IconButton from '../../components/atoms/IconButton/IconButton';
 import AddNewTaskSidebar from '../../components/organisms/AddNewTask/AddNewTask';
+import { Plus } from 'react-feather';
 
 const CategoryFilter = styled.div`
     width: 100%;
@@ -15,9 +16,17 @@ const CategoryFilter = styled.div`
     grid-template-columns: repeat(4, min-content);
     grid-column-gap: 10px;
     overflow-x: scroll;
+    
+    &::-webkit-scrollbar {
+        display: none;
+    }
 
     @media (max-width: 800px) {
         padding-left: 40px;
+    }
+
+    @media (max-width: 500px) {
+        padding-left: 60px;
     }
 `
 const TasksWrapper = styled.div`
@@ -36,6 +45,7 @@ const Info = styled.p`
     font-size: 18px;
     text-align: center;
     margin-top: 10px;
+    color: #FFFFFF;
 `
 
 class TodoView extends React.Component {
@@ -91,7 +101,9 @@ class TodoView extends React.Component {
                     }
                 </TasksWrapper>
                 <IconFixed>
-                    <IconButton onClick={this.handleSidebarToggle}>+</IconButton>
+                    <IconButton onClick={this.handleSidebarToggle}>
+                        <Plus size={30} strokeWidth={3} />
+                    </IconButton>
                 </IconFixed>
                 <AddNewTaskSidebar isSidebarActive={this.state.isSidebarActive} toggleSidebar={this.handleSidebarToggle} />
             </UserPageTemplate>

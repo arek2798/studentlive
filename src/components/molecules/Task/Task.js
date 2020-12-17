@@ -3,25 +3,38 @@ import styled from 'styled-components';
 import CheckboxTask from '../../atoms/CheckboxTask/CheckboxTask';
 import { connect } from 'react-redux';
 import { removeTask } from '../../../actions';
+import { X } from 'react-feather';
 
 const Wrapper = styled.div`
     padding: 10px 15px;
     border-radius: 10px;
-    background: #FFFFFF;
-    color: #4B6584;
+    background: #2F3438;
+    color: #FFFFFF;
     box-shadow: 4px 4px 10px -5px rgba(70, 70, 70, 0.4);
     display: grid;
     grid-template-columns: 20px auto 140px 50px 30px;
+    align-items: center;
     
     > * {
         align-self: center;
     }
+
+    @media (max-width: 800px) {
+        font-size: 14px;
+        grid-template-columns: 20px auto 80px 50px 30px;
+    }
+
+    @media (max-width: 500px) {
+        font-size: 12px;
+        grid-template-columns: 20px auto 80px 50px 30px;
+    }
 `
 const Date = styled.span`
-    font-weight: 500;
+    font-weight: 400;
+    padding-left: 5px; 
 `
 const Important = styled.span`
-    font-weight: 500;
+    font-weight: 400;
     color: #EB5757;
 `
 const RemoveBtn = styled.button`
@@ -46,13 +59,14 @@ const Task = ({ children, id, date, time, important, checked, removeTask, onChan
         {children}
         <Date>{date} {time}</Date>
         <Important>{important && <>ważne!</>}</Important>
-        <RemoveBtn onClick={() => removeTask(id)}>X</RemoveBtn>
+        <RemoveBtn onClick={() => removeTask(id)}>
+            <X size={20} />
+        </RemoveBtn>
     </Wrapper>
 )
 
 const mapDispatchToProps = dispatch => ({
     removeTask: (id) => dispatch(removeTask(id)),
-
 })
 
 export default connect(null, mapDispatchToProps)(Task);

@@ -43,12 +43,45 @@ const MonthName = styled.div`
 const TableWrapper = styled.div`
     max-width: 100%;
     overflow-x: scroll;
+    
+    &::-webkit-scrollbar-track
+    {
+        box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        border-radius: 10px;
+        background-color: #2F3438;
+    }
+
+    &::-webkit-scrollbar
+    {
+        width: 8px;
+        height: 8px;
+        background-color: #2F3438;
+    }
+
+    &::-webkit-scrollbar-thumb
+    {
+        border-radius: 10px;
+        box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+        background-color: #EB5757;
+    }
+
+    &::-webkit-scrollbar-corner {
+        background: #2F3438;
+    }
+
+    @media (max-width: 500px) {
+        &::-webkit-scrollbar
+        {
+            display: none;
+        }
+    }
 `
 const Table = styled.table`
     width: 910px;
     margin: 20px auto;
     transition: all 0.4s ease-in-out;
     border-collapse: collapse;
+    color: #DEDEDE;
 
     th {
         padding-bottom: 13px;
@@ -65,11 +98,11 @@ const Table = styled.table`
             transition: all .1s ease;
 
             &:hover {
-                background: #F6F6F6;
+                background: #3F4549;
             }
         }
         &:not(.clickable) {
-            background: #E3E3E3;
+            background: #25292E;
         }
         &.today {
             span {
@@ -78,10 +111,20 @@ const Table = styled.table`
             }
         }
     }
+
+    @media (max-width: 800px) {
+        width: 700px;
+
+        td {
+            width: 100px;
+            height: 80px;
+        }
+    }
 `
 const DayWrapper = styled.div`
     width: 100%;
     height: 100%;
+    color: #DEDEDE;
 `
 
 class Calendar extends React.Component {
@@ -119,7 +162,12 @@ class Calendar extends React.Component {
                 if (clickable) classes.push("clickable");
                 if (currentDay === this.state.day) classes.push("today");
                 row.push(
-                    <td key={j} className={classes.join(" ")}>{clickable && <DayWrapper onClick={() => this.props.changeSelectDay(`${year}-${month}-${currentDay}`, todayEvents)}>{clickable && <span>{currentDay}.</span>}{todayEvents.map((event, index) => <CalendarEvent key={index} content={event.content} color={event.color} />)}</DayWrapper>}</td>
+                    <td key={j} className={classes.join(" ")}>
+                        {clickable &&
+                            <DayWrapper onClick={() => this.props.changeSelectDay(`${year}-${month}-${currentDay}`, todayEvents)}>
+                                {clickable && <span>{currentDay}.</span>}{todayEvents.map((event, index) => <CalendarEvent key={index} content={event.content} color={event.color} />)}
+                            </DayWrapper>}
+                    </td>
                 )
                 day++;
             }

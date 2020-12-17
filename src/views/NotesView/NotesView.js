@@ -6,6 +6,7 @@ import FilterButton from '../../components/atoms/FilterButton/FilterButton';
 import NoteFiled from '../../components/organisms/NoteField/NoteField';
 import IconButton from '../../components/atoms/IconButton/IconButton';
 import AddNewNoteSidebar from '../../components/organisms/AddNewNote/AddNewNote';
+import { Plus } from 'react-feather';
 import { fetchNotes } from '../../actions';
 
 const Wrapper = styled.div`
@@ -22,9 +23,13 @@ const CategoryFilter = styled.div`
     grid-template-columns: repeat(${props => props.numberOf}, min-content);
     grid-column-gap: 10px;
     overflow-x: scroll;
+    
+    &::-webkit-scrollbar {
+        display: none;
+    }
  
     @media (max-width: 800px) {
-        padding-left: 40px;
+        padding-left: 60px;
     }
 `;
 
@@ -41,13 +46,13 @@ const NotesGrid = styled.div`
     {
         box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
         border-radius: 10px;
-        background-color: #F5F5F5;
+        background-color: #25292E;
     }
 
     &::-webkit-scrollbar
     {
-        width: 12px;
-        background-color: #F5F5F5;
+        width: 8px;
+        background-color: #25292E;
     }
 
     &::-webkit-scrollbar-thumb
@@ -112,7 +117,9 @@ class NotesView extends React.Component {
                     </NotesGrid>
                 </Wrapper>
                 <IconFixed>
-                    <IconButton onClick={this.handleSidebarToggle}>+</IconButton>
+                    <IconButton onClick={this.handleSidebarToggle}>
+                        <Plus size={30} strokeWidth={3} />
+                    </IconButton>
                 </IconFixed>
                 <AddNewNoteSidebar isSidebarActive={this.state.isSidebarActive} toggleSidebar={this.handleSidebarToggle} />
             </UserPageTemplate>

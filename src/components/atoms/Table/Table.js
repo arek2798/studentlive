@@ -9,17 +9,17 @@ const Table = styled.table`
       font-size: 14px;
       
       th {
-        color: #828282;
-        font-weight: 500;
-        font-size: 16px;
-        padding: 5px;
-        border: 2px solid #EEEEEE;
+        color: #DEDEDE;
+        font-weight: 400;
+        font-size: 14px;
+        padding: 5px 10px;
+        border: 2px solid #25292E;
       }
 
       td {
         padding: 5px;
-        font-weight: 500;
-        border-left: 2px solid #EEEEEE;
+        font-weight: 400;
+        border-left: 2px solid #25292E;
       }
 
       td:first-child {

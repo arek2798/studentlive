@@ -20,15 +20,15 @@ const InputWrapper = styled.div`
     align-items: center;
     justify-content: space-between;
 `
-const PassForgot = styled.p`
-    width: 100%;
-    font-size: 10px;
-    text-align: right;
-    
-    a {
-        color: #FFFFFF;
-    }
-`
+// const PassForgot = styled.p`
+//     width: 100%;
+//     font-size: 10px;
+//     text-align: right;
+
+//     a {
+//         color: #FFFFFF;
+//     }
+// `
 const LinkStyled = styled(Link)`
     text-decoration: underline;
     color: #EB5757;

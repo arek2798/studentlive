@@ -3,9 +3,10 @@ import styled, { css } from 'styled-components';
 const Input = styled.input`
     height: ${props => props.textarea ? "360px" : "40px"};
     width: ${({ width }) => width ? width : "100%"};
-    background: #F5F5F5;
-    color: #4B6584;
-    border: 2px solid #F1F1F1;
+    background: #25292E;
+    color: #DEDEDE;
+    border: 2px solid #25292E;
+    /* border: none; */
     border-radius: 15px;
     padding: 15px;
     outline: none;

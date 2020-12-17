@@ -9,17 +9,26 @@ import Button from '../../atoms/Button/Button';
 
 const Field = styled(DataField)`
     text-align: right;
+    min-width: 300px;
 
     & > p {
         text-align: center;
         margin-bottom: 10px;
+    }
+
+    @media (max-width: 800px) {
+        min-width: 500px;
+    }
+
+    @media (max-width: 500px) {
+        min-width: calc(100% - 20px);
     }
 `
 
 const Heading = styled.p`
     font-size: 16px;
     font-weight: 500;
-    color: #828282;
+    color: #DEDEDE;
     margin-bottom: 20px;
     text-align: center;
 `
@@ -35,11 +44,12 @@ const DateP = styled.p`
     color: #EB5757;
     width: 200px;
     min-height: 30px;
-    border-right: 3px solid #EEEEEE;
+    border-right: 3px solid #25292E;
 `
 
 const Title = styled.p`
     width: 100%;
+    color: #DEDEDE;
 `
 
 class NextEventsField extends React.Component {
@@ -62,7 +72,7 @@ class NextEventsField extends React.Component {
                 <Heading>najbliższe wydarzenia</Heading>
                 {sortedEvents.length ? sortedEvents.map(event => (
                     <ListItem key={event._id}>
-                        <DateP>{new Date(event.date).getDate()} {numToMonthName(new Date(event.date).getMonth())}</DateP>
+                        <DateP>{new Date(event.date).getDate()} {numToMonthName(new Date(event.date).getMonth() + 1)}</DateP>
                         <Title>{event.content}</Title>
                     </ListItem>
                 )) : <p>Brak wydarzeń</p>}

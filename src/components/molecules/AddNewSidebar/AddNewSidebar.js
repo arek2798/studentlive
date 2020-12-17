@@ -8,9 +8,9 @@ const AddNewSidebar = styled.div`
     height: 100vh;
     max-width: 100vw;
     padding: 30px 30px 100px;
-    background: #FFFFFF;
+    background: #2F3438;
     border-left: 5px solid #EB5757;
-    box-shadow: -5px 0 10px -2px rgba(90, 90, 90, 0.4);
+    box-shadow: -5px 0 20px -2px rgba(0, 0, 0, 0.3);
     transform: translateX(${({ isSidebarActive }) => (isSidebarActive ? '0%' : '100%')});
     transition: transform 0.4s ease-in-out;
 `

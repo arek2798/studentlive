@@ -3,8 +3,8 @@ import styled from 'styled-components'
 
 const Button = styled.button`
     border: none;
-    background-color: ${props => props.active ? "#EB5757" : "#FFFFFF"};
-    color: ${props => props.active ? "#FFFFFF" : "#4B6584"};
+    background-color: ${props => props.active ? "#EB5757" : "#2F3438"};
+    color: ${props => props.active ? "#DEDEDE" : "#DEDEDE"};
     min-width: 100px;
     height: 30px;
     padding: 0 5px;
@@ -18,7 +18,7 @@ const Button = styled.button`
 
     &:hover {
         background-color: #EB5757;
-        color: #ffffff;
+        color: #DEDEDE;
     }
 `;
 

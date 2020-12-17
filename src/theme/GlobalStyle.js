@@ -16,6 +16,7 @@ const GlobalStyle = createGlobalStyle`
     body {
         font-size: 1.6rem;
         font-family: "Montserrat", sans-serif;
+        color: #DEDEDE;
     }
 
     a {
@@ -32,7 +33,7 @@ const GlobalStyle = createGlobalStyle`
     }
 
     .app {
-        background-color: #eeeeee;
+        background-color: #25292E;
         width: 100vw;
         height: 100vh;
         overflow-x: hidden;
@@ -48,6 +49,12 @@ const GlobalStyle = createGlobalStyle`
     @media (max-width: 800px) {
         main {
             padding: 30px;
+        }
+    }
+
+    @media (max-width: 500px) {
+        main {
+            padding: 30px 10px;
         }
     }
 `;

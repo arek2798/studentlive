@@ -8,7 +8,7 @@ const ModalBg = styled.div`
     z-index: 10;
     width: 100vw;
     height: 100vh;
-    background: rgba(140,140,140, 0.2);
+    background: rgba(0,0,0, 0.3);
 `
 
 const ModalContent = styled.div`
@@ -18,7 +18,8 @@ const ModalContent = styled.div`
     transform: translate(-50%, -50%);
     width: 360px;
     height: ${props => props.height ? props.height : "400px"};
-    background-color: #ffffff;
+    background-color: #2F3438;
+    color: #DEDEDE;
     box-shadow: 5px 5px 10px -5px rgba(0,0,0, 0.25);
     padding: 20px;
     border-radius: 10px;

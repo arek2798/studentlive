@@ -11,7 +11,7 @@ const Field = styled.div`
     height: 220px;
     width: 350px;
     margin: 10px;
-    background-color: #FFFFFF;
+    background-color: #2F3438;
     border-radius: 10px;
     box-shadow: 0 8px 10px -5px rgba(0,0,0,0.4);
     display: flex;
@@ -21,7 +21,7 @@ const Field = styled.div`
 const Header = styled.div`
     height: 45px;
     background-color: #EB5757;
-    color: #FFFFFF;
+    color: #DEDEDE;
     border-radius: 10px 10px 0 0;
     padding: 7px 10px;
 `
@@ -49,6 +49,7 @@ const Content = styled.div`
     cursor: pointer;
     overflow-y: hidden;
     margin-bottom: 5px;
+    color: #DEDEDE;
 `
 
 const ButtonsWrapper = styled.div`
@@ -63,6 +64,7 @@ const AgreeButtons = styled(ButtonsWrapper)`
 
 const Created = styled.span`
     line-height: 30px;
+    color: #DEDEDE;
 `
 
 class NoteFiled extends React.Component {
