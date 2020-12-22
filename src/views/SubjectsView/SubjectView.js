@@ -23,7 +23,7 @@ const TableWrapper = styled.div`
         display: none;
     }
 `
-const Options = styled.td`
+const Options = styled.div`
     display: flex;
     width: 70px;
     justify-content: space-around;
@@ -115,12 +115,12 @@ class SubjectsView extends React.Component {
                                             <td>{subject.ects}</td>
                                             <td>{subject.credit ? <Correct>TAK</Correct> : <Wrong>NIE</Wrong>}</td>
                                             <td>{(subject.grade === null) ? <span>-</span> : <span>{subject.grade}</span>}</td>
-                                            <Options>
-                                                <Settings size={20} onClick={() => this.changeData(subject._id)} />
-                                                <Trash size={20} onClick={() => removeSubject(subject._id)} />
-                                            </Options>
-                                            {/* <td><Button small onClick={() => this.changeData(subject._id)}>zmien dane</Button></td>
-                                            <td><Button small onClick={() => removeSubject(subject._id)}>usuń</Button></td> */}
+                                            <td>
+                                                <Options>
+                                                    <Settings size={20} onClick={() => this.changeData(subject._id)} />
+                                                    <Trash size={20} onClick={() => removeSubject(subject._id)} />
+                                                </Options>
+                                            </td>
                                         </tr>
                                     ))}
                                 </tbody>

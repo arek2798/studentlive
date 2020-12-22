@@ -40,7 +40,7 @@ const StyledNavLink = styled(NavLink)`
     }
 
     @media (max-width: 800px) {
-        padding: 11px 0 11px 43px;
+        padding: 13px 0 13px 43px;
     }
 `
 

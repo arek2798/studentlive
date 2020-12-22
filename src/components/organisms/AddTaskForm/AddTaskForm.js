@@ -22,7 +22,7 @@ const Form = styled.form`
 
 const StyledLabel = styled(Label)`
     font-size: 16px;
-    color: #4B6584;
+    color: #DEDEDE;
 `
 
 const InputWrapper = styled.div`

@@ -28,12 +28,15 @@ const Input = styled.input`
     }
 
     &[type=time]::-webkit-inner-spin-button,
-    &[type=date]::-webkit-inner-spin-button{
-    display: none;
-    -webkit-appearance: none;
+    &[type=date]::-webkit-inner-spin-button {
+        display: none;
+        -webkit-appearance: none;
+    }
 
-    /* &[type=time]::-webkit-inner-spin-button  */
-}
+    &[type=time]::-webkit-calendar-picker-indicator,
+    &[type=date]::-webkit-calendar-picker-indicator {
+        filter: invert(1);
+    }
 `
 
 export default Input;

@@ -36,9 +36,9 @@ const Label = styled.label`
     cursor: pointer;
     top: -7px;
     left: -3px;
-    padding-left: 20px;
+    padding-left: 25px;
     width: 100px;
-    color: #4B6584;
+    color: #DEDEDE;
     font-weight: 500;
 
     &:hover ${Input} ~ ${Checkmark} {
