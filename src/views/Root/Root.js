@@ -15,17 +15,8 @@ import NotesView from '../NotesView/NotesView';
 import NoteDetailsView from '../NoteDetailsView/NoteDetailsView';
 import TodoView from '../TodoView/TodoView';
 import { PersistGate } from 'redux-persist/integration/react';
-// import firebase from '../../firebase';
 
 const App = () => {
-  // useEffect(() => {
-  //   const msg = firebase.messaging();
-  //   msg.requestPermission().then(() => {
-  //     return msg.getToken();
-  //   }).then((data) => {
-  //     console.warn("token", data)
-  //   })
-  // })
 
   return (
     <Provider store={store}>
